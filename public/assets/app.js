@@ -24,6 +24,12 @@
       calc: function (t, b) {
         return 'Calculation: all digits of your date of birth add up to ' + t + ', which reduces to Bhagyank ' + b + '.'
       },
+      more: function (b) { return 'Full Bhagyank ' + b + ' meaning' },
+      loshu: 'Make my Lo Shu Grid',
+      shareBtn: 'Share on WhatsApp',
+      share: function (b, title) {
+        return 'My Bhagyank is ' + b + ' (' + title + '). Find yours free: https://www.bhagyank-calculator.online/'
+      },
     },
     hi: {
       missing: 'कृपया अपनी पूरी जन्मतिथि चुनें।',
@@ -38,6 +44,12 @@
       lucky: 'शुभ रंग और दिन',
       calc: function (t, b) {
         return 'गणना: आपकी जन्मतिथि के सभी अंकों का योग ' + t + ' है, जिसे एक अंक में बदलने पर भाग्यांक ' + b + ' आता है।'
+      },
+      more: function (b) { return 'भाग्यांक ' + b + ' का पूरा अर्थ' },
+      loshu: 'लो शू ग्रिड बनाएँ',
+      shareBtn: 'WhatsApp पर शेयर करें',
+      share: function (b, title) {
+        return 'मेरा भाग्यांक ' + b + ' (' + title + ') है। अपना भाग्यांक मुफ़्त में जानें: https://www.bhagyank-calculator.online/hi'
       },
     },
   }
@@ -160,7 +172,66 @@
         '<div class="info"><h4>' + ICON + ' ' + t.careers + '</h4><p>' + esc(info.career) + '</p></div>' +
         '<div class="info"><h4>' + ICON + ' ' + t.lucky + '</h4><p>' + esc(info.luckyColors.join(', ')) + '<br>' +
         esc(info.luckyDays.join(', ')) + '</p></div>' +
-        '</div><p class="xs muted calc-note">' + t.calc(total, b) + '</p></div>'
+        '</div><p class="xs muted calc-note">' + t.calc(total, b) + '</p>' +
+        '<div class="result-actions">' +
+        '<a class="btn inline" href="' + (lang === 'hi' ? '/hi/bhagyank/' : '/bhagyank/') + b + '">' + t.more(b) + '</a>' +
+        '<a class="btn inline ghost" href="/lo-shu-grid-calculator">' + t.loshu + '</a>' +
+        '<a class="btn inline ghost" target="_blank" rel="noopener" href="https://wa.me/?text=' +
+        encodeURIComponent(t.share(b, info.title)) + '">' + t.shareBtn + '</a>' +
+        '</div></div>'
+      scrollTo(out)
+    })
+  }
+
+  /* ---------------- Lo Shu grid ---------------- */
+  var LS_ORDER = [4, 9, 2, 3, 5, 7, 8, 1, 6]
+  var LS_PLANES = [
+    ['Mental plane', [4, 9, 2]], ['Emotional plane', [3, 5, 7]], ['Practical plane', [8, 1, 6]],
+    ['Thought plane', [4, 3, 8]], ['Will plane', [9, 5, 1]], ['Action plane', [2, 7, 6]],
+    ['Golden Yog', [4, 5, 6]], ['Silver Yog', [2, 5, 8]],
+  ]
+  var LS_AREA = {
+    1: 'communication and career', 2: 'feelings and intuition', 3: 'learning and imagination',
+    4: 'order and hard work', 5: 'balance and focus', 6: 'family, home and comforts',
+    7: 'inner growth and luck', 8: 'money handling and patience', 9: 'energy and ambition',
+  }
+
+  function loshu(root) {
+    var form = root.querySelector('form')
+    var out = root.querySelector('.result')
+    var f = setupDob(root, 'en')
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault()
+      if (!f.day.value || !f.month.value || !f.year.value) return showError(form, 'Please select your full date of birth.')
+      var d = Number(f.day.value), m = Number(f.month.value), y = Number(f.year.value)
+      if (d > daysInMonth(m, y)) return showError(form, 'This date does not exist. Please check the day and month.')
+      showError(form, '')
+      var digits = ('' + d + m + y).split('').map(Number).filter(function (x) { return x > 0 })
+      var mul = reduce(d)
+      var bhag = reduce(digitSum('' + d + m + y))
+      var all = digits.concat([mul, bhag])
+      var count = {}
+      all.forEach(function (x) { count[x] = (count[x] || 0) + 1 })
+      var cells = LS_ORDER.map(function (k) {
+        var v = count[k] ? new Array(count[k] + 1).join(String(k)) : ''
+        return '<div class="ls-cell' + (v ? '' : ' ls-empty') + '"><span class="ls-pos">' + k + '</span><span class="ls-val">' + v + '</span></div>'
+      }).join('')
+      var missing = [1, 2, 3, 4, 5, 6, 7, 8, 9].filter(function (k) { return !count[k] })
+      var repeated = [1, 2, 3, 4, 5, 6, 7, 8, 9].filter(function (k) { return count[k] > 1 })
+      var planes = LS_PLANES.filter(function (p) { return p[1].every(function (k) { return count[k] }) })
+      out.innerHTML =
+        '<div class="card result-card">' +
+        '<div class="ls-result"><div class="ls-grid" aria-label="Your Lo Shu Grid">' + cells + '</div>' +
+        '<div><p class="muted small">Your Lo Shu Grid</p><h3 class="result-title">' + d + '-' + m + '-' + y + '</h3>' +
+        '<div class="chips"><span class="chip">Mulank: ' + mul + '</span><span class="chip">Bhagyank: ' + bhag + '</span></div>' +
+        '<p class="xs muted calc-note">Digits used: ' + digits.join(', ') + ' + Mulank ' + mul + ' + Bhagyank ' + bhag + ' (zeros are left out)</p></div></div>' +
+        '<div class="info-grid">' +
+        '<div class="info"><h4>Complete planes</h4>' + (planes.length ? list(planes.map(function (p) { return p[0] + ' (' + p[1].join('-') + ')' })) : '<p>No complete plane - that is very common.</p>') + '</div>' +
+        '<div class="info"><h4>Repeated numbers</h4>' + (repeated.length ? list(repeated.map(function (k) { return k + ' x' + count[k] + ' - strong ' + LS_AREA[k] })) : '<p>None</p>') + '</div>' +
+        '<div class="info" style="grid-column:1/-1"><h4 class="accent">Missing numbers</h4>' + (missing.length ? list(missing.map(function (k) { return k + ' - may need effort in ' + LS_AREA[k] })) : '<p>None - every number is present.</p>') + '</div>' +
+        '</div>' +
+        '<div class="result-actions"><a class="btn inline" href="/bhagyank/' + bhag + '">Read Bhagyank ' + bhag + ' meaning</a></div>' +
+        '</div>'
       scrollTo(out)
     })
   }
@@ -282,7 +353,7 @@
     })
   }
 
-  var INIT = { bhagyank: bhagyank, moolank: moolank, namank: namank, gemstone: gemstone }
+  var INIT = { bhagyank: bhagyank, moolank: moolank, namank: namank, gemstone: gemstone, loshu: loshu }
 
   document.querySelectorAll('[data-calc]').forEach(function (el) {
     var fn = INIT[el.getAttribute('data-calc')]
