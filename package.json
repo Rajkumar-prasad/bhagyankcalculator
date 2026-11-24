@@ -1,0 +1,9 @@
+{
+  "name": "bhagyank-calculator-website",
+  "private": true,
+  "description": "Static HTML/CSS/JS site for bhagyank-calculator.online",
+  "scripts": {
+    "build": "echo \"Static site - nothing to build\"",
+    "deploy": "npx wrangler deploy"
+  }
+}
