@@ -298,3 +298,12 @@ td:first-child { color: var(--fg); font-weight: 500; }
 .footer-nums span { color: var(--muted-fg); }
 .footer-nums a:hover { color: var(--primary); }
 @media (min-width: 640px) { .num-hero h1 { font-size: 2.25rem; } }
+
+/* author page */
+.author-hero { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1.5rem; }
+.author-hero img { width: 10rem; height: 10rem; border-radius: 1rem; object-fit: cover; border: 1px solid var(--border); }
+.author-hero h1 { margin-top: 0.35rem; }
+.author-hero p.muted { margin-top: 0.5rem; }
+.prose ul { padding-left: 1.2rem; }
+.prose li + li { margin-top: 0.4rem; }
+@media (min-width: 640px) { .author-hero { flex-direction: row; align-items: center; } }
