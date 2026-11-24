@@ -7,6 +7,7 @@
   var MONTHS = {
     en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
     hi: ['जनवरी', 'फ़रवरी', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अगस्त', 'सितंबर', 'अक्टूबर', 'नवंबर', 'दिसंबर'],
+    mr: ['जानेवारी', 'फेब्रुवारी', 'मार्च', 'एप्रिल', 'मे', 'जून', 'जुलै', 'ऑगस्ट', 'सप्टेंबर', 'ऑक्टोबर', 'नोव्हेंबर', 'डिसेंबर'],
   }
 
   var TEXT = {
@@ -50,6 +51,27 @@
       shareBtn: 'WhatsApp पर शेयर करें',
       share: function (b, title) {
         return 'मेरा भाग्यांक ' + b + ' (' + title + ') है। अपना भाग्यांक मुफ़्त में जानें: https://www.bhagyank-calculator.online/hi'
+      },
+    },
+    mr: {
+      missing: 'कृपया तुमची पूर्ण जन्मतारीख निवडा.',
+      invalid: 'ही तारीख अस्तित्वात नाही. कृपया दिवस आणि महिना तपासा.',
+      badge: 'भाग्यांक',
+      yourNumber: 'तुमचा भाग्यांक आहे',
+      planet: 'स्वामी ग्रह',
+      mulank: 'मूलांक',
+      strengths: 'गुणवैशिष्ट्ये',
+      challenges: 'लक्ष द्या',
+      careers: 'योग्य करिअर',
+      lucky: 'शुभ रंग आणि दिवस',
+      calc: function (t, b) {
+        return 'गणना: तुमच्या जन्मतारखेच्या सर्व अंकांची बेरीज ' + t + ' आहे, जिचा एक अंक केल्यावर भाग्यांक ' + b + ' येतो.'
+      },
+      more: function (b) { return 'भाग्यांक ' + b + ' चा संपूर्ण अर्थ' },
+      loshu: 'लो शू ग्रिड बनवा',
+      shareBtn: 'WhatsApp वर शेअर करा',
+      share: function (b, title) {
+        return 'माझा भाग्यांक ' + b + ' (' + title + ') आहे. तुमचा भाग्यांक मोफत जाणून घ्या: https://www.bhagyank-calculator.online/mr'
       },
     },
   }
@@ -139,7 +161,7 @@
 
   /* ---------------- Bhagyank ---------------- */
   function bhagyank(root) {
-    var lang = root.getAttribute('data-lang') === 'hi' ? 'hi' : 'en'
+    var lang = TEXT[root.getAttribute('data-lang')] ? root.getAttribute('data-lang') : 'en'
     var t = TEXT[lang]
     var form = root.querySelector('form')
     var out = root.querySelector('.result')
@@ -156,8 +178,8 @@
       var b = reduce(total)
       var mul = reduce(d)
       var en = DATA.en[b]
-      var info = lang === 'hi' ? DATA.hi[b] : en
-      var planet = lang === 'hi' ? info.planet : en.planet + ' (' + en.planetHindi + ')'
+      var info = lang === 'en' ? en : DATA[lang][b]
+      var planet = lang === 'en' ? en.planet + ' (' + en.planetHindi + ')' : info.planet
 
       out.innerHTML =
         '<div class="card result-card">' +
@@ -174,7 +196,7 @@
         esc(info.luckyDays.join(', ')) + '</p></div>' +
         '</div><p class="xs muted calc-note">' + t.calc(total, b) + '</p>' +
         '<div class="result-actions">' +
-        '<a class="btn inline" href="' + (lang === 'hi' ? '/hi/bhagyank/' : '/bhagyank/') + b + '">' + t.more(b) + '</a>' +
+        '<a class="btn inline" href="' + (lang === 'en' ? '/bhagyank/' : '/' + lang + '/bhagyank/') + b + '">' + t.more(b) + '</a>' +
         '<a class="btn inline ghost" href="/lo-shu-grid-calculator">' + t.loshu + '</a>' +
         '<a class="btn inline ghost" target="_blank" rel="noopener" href="https://wa.me/?text=' +
         encodeURIComponent(t.share(b, info.title)) + '">' + t.shareBtn + '</a>' +

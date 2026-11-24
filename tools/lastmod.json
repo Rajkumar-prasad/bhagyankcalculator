@@ -2,171 +2,221 @@
  "/": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "4cfd6f779cbb959f"
+  "hash": "ee1e9b1bef181ea6"
  },
  "/404": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "4c95dddff0390174"
+  "hash": "251322fec3888256"
  },
  "/about": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "8c206aaefaff77ca"
+  "hash": "f75caa268708f000"
  },
  "/author/ananya-sharma": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "c9c063d2a4bd77ff"
+  "hash": "60db5909371b4bff"
  },
  "/bhagyank/1": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "7ff1476b2b9d6b64"
+  "hash": "c19b2515415b5faa"
  },
  "/bhagyank/2": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "2ba2dc261328b73a"
+  "hash": "4547a5611cbf8563"
  },
  "/bhagyank/3": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "c374926e1f7d6cba"
+  "hash": "64faccbf77f8fb93"
  },
  "/bhagyank/4": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "edd349075514a7cd"
+  "hash": "6764d60f6ebc2738"
  },
  "/bhagyank/5": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "0a3c0d632d60115c"
+  "hash": "57fa428e627bbcfc"
  },
  "/bhagyank/6": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "9fbe092cf2e3e6b1"
+  "hash": "e21b10125094d555"
  },
  "/bhagyank/7": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "8f93abbb8818ef34"
+  "hash": "e6bbb315d9c6ebcf"
  },
  "/bhagyank/8": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "98a7975c16d2350e"
+  "hash": "cf93cf07c8eb31b8"
  },
  "/bhagyank/9": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "5ca46b9bcf39c27a"
+  "hash": "27816f679ab1f373"
  },
  "/blog": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "0e0a80ed8f96312b"
+  "hash": "997f8a2cc5772b12"
  },
  "/blog/mulank-bhagyank-combination": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "2c9f79cc58468a4b"
+  "hash": "592d6b3d37d73814"
  },
  "/contact": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "a336d606e6c3328a"
+  "hash": "effc11ab7c61e6a8"
  },
  "/gemstone-recommendation": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "588055c4ed39faf6"
+  "hash": "403ab4d87814174a"
  },
  "/hi": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "05c3c8fff58c13c9"
+  "hash": "102f82359f0d889f"
  },
  "/hi/bhagyank/1": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "14597009709a1fea"
+  "hash": "f01326b5f2c88f8b"
  },
  "/hi/bhagyank/2": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "ae76f262fdc2db85"
+  "hash": "1c8c2b5e37254512"
  },
  "/hi/bhagyank/3": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "b484708e7f39a7a6"
+  "hash": "f342140d953bc1bd"
  },
  "/hi/bhagyank/4": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "7e559e95a6818eaf"
+  "hash": "cc2a94efa34af7a4"
  },
  "/hi/bhagyank/5": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "b8570fd6aa9fded2"
+  "hash": "21402ad9ff2f1e1b"
  },
  "/hi/bhagyank/6": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "537e76038efbc803"
+  "hash": "5c17e55540536e28"
  },
  "/hi/bhagyank/7": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "68af571fe3774d6f"
+  "hash": "742d2166711f3090"
  },
  "/hi/bhagyank/8": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "959ea67c4bdb1a87"
+  "hash": "604e332476cd0168"
  },
  "/hi/bhagyank/9": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "07f36a022420e941"
+  "hash": "f53f964933493ac0"
  },
  "/hi/blog/shaadi-ke-liye-mulank-bhagyank-milan": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "f106686af189d6dd"
+  "hash": "8603b4a1ac23c7af"
  },
  "/lo-shu-grid-calculator": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "7e2da433dd248e01"
+  "hash": "cf2085da3c4f20a0"
  },
  "/moolank-calculator": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "f39951ed1c6682f6"
+  "hash": "2cb0ad56c09cacd3"
+ },
+ "/mr": {
+  "published": "2026-11-24",
+  "modified": "2026-11-24",
+  "hash": "38e617469c67c2ff"
+ },
+ "/mr/bhagyank/1": {
+  "published": "2026-11-24",
+  "modified": "2026-11-24",
+  "hash": "8ade32971d2295c9"
+ },
+ "/mr/bhagyank/2": {
+  "published": "2026-11-24",
+  "modified": "2026-11-24",
+  "hash": "eab9b965f2c0343a"
+ },
+ "/mr/bhagyank/3": {
+  "published": "2026-11-24",
+  "modified": "2026-11-24",
+  "hash": "cb30126cc6b7ae82"
+ },
+ "/mr/bhagyank/4": {
+  "published": "2026-11-24",
+  "modified": "2026-11-24",
+  "hash": "e0cde8b1faf7839f"
+ },
+ "/mr/bhagyank/5": {
+  "published": "2026-11-24",
+  "modified": "2026-11-24",
+  "hash": "20f982cdf4167a11"
+ },
+ "/mr/bhagyank/6": {
+  "published": "2026-11-24",
+  "modified": "2026-11-24",
+  "hash": "97e67a0588dfee7b"
+ },
+ "/mr/bhagyank/7": {
+  "published": "2026-11-24",
+  "modified": "2026-11-24",
+  "hash": "1b8e17d00d206909"
+ },
+ "/mr/bhagyank/8": {
+  "published": "2026-11-24",
+  "modified": "2026-11-24",
+  "hash": "ac67fe971c1abdb1"
+ },
+ "/mr/bhagyank/9": {
+  "published": "2026-11-24",
+  "modified": "2026-11-24",
+  "hash": "10ab10b20e18305b"
  },
  "/namank-calculator": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "b2405903d4aa976a"
+  "hash": "251b87e4ed737208"
  },
  "/privacy-policy": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "a7c7478024afd9bb"
+  "hash": "28cd65c068478d03"
  },
  "/sitemap": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "4645384697d3b7c5"
+  "hash": "66675e22d7b2dec8"
  },
  "/terms-and-conditions": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
-  "hash": "ac41c11a1a5da0b8"
+  "hash": "7cb8a30d96084c96"
  }
 }

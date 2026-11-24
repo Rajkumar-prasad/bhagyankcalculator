@@ -21,7 +21,7 @@ GTM_ID = "GTM-WFC7XXW5"
 ADSENSE = "ca-pub-7904206080765704"
 
 data = json.loads((HERE / "data.json").read_text())
-EN, HI = data["en"], data["hi"]
+EN, HI, MR = data["en"], data["hi"], data["mr"]
 
 e = html.escape
 
@@ -47,15 +47,22 @@ AUTHOR_BIO = {
         "what each number from 1 to 9 traditionally represents in Vedic numerology - its ruling planet, nature, "
         "lucky colors, lucky days and gemstone.",
         "Her guides show the full calculation step by step, with worked date-of-birth examples, so you can check "
-        "every result yourself instead of taking a number on trust. She writes in both English and Hindi, so the "
-        "same method is easy to follow in either language.",
+        "every result yourself instead of taking a number on trust. She writes in English, Hindi and Marathi, so "
+        "the same method is easy to follow in the language you are most comfortable with.",
     ],
     "hi": [
         "अनन्या शर्मा (Ananya Sharma) भाग्यांक कैलकुलेटर पर अंक ज्योतिष गाइड लिखने वाली लेखिका का उपनाम है। "
         "वे जन्मतिथि से भाग्यांक और मूलांक निकालने का तरीका समझाती हैं, और बताती हैं कि पारंपरिक वैदिक अंक ज्योतिष में "
         "1 से 9 तक हर अंक का क्या अर्थ है - उसका स्वामी ग्रह, स्वभाव, शुभ रंग, शुभ दिन और रत्न।",
         "उनकी गाइड में हर गणना उदाहरण के साथ चरण-दर-चरण दिखाई जाती है, ताकि आप अपना परिणाम खुद जाँच सकें। "
-        "वे हिंदी और अंग्रेज़ी दोनों भाषाओं में लिखती हैं।",
+        "वे हिंदी, अंग्रेज़ी और मराठी में लिखती हैं।",
+    ],
+    "mr": [
+        "अनन्या शर्मा (Ananya Sharma) हे भाग्यांक कॅल्क्युलेटरवरील अंकशास्त्र मार्गदर्शक लिहिणाऱ्या लेखिकेचे टोपणनाव आहे. "
+        "जन्मतारखेवरून भाग्यांक आणि मूलांक कसा काढायचा, आणि पारंपरिक वैदिक अंकशास्त्रात 1 ते 9 प्रत्येक अंकाचा काय अर्थ होतो - "
+        "त्याचा स्वामी ग्रह, स्वभाव, शुभ रंग, शुभ दिवस आणि रत्न - हे त्या सोप्या भाषेत समजावून सांगतात.",
+        "त्यांच्या लेखांमध्ये प्रत्येक गणना उदाहरणासह टप्प्याटप्प्याने दाखवली जाते, म्हणजे तुम्ही तुमचे उत्तर स्वतः तपासू शकता. "
+        "त्या मराठी, हिंदी आणि इंग्रजी भाषेत लिहितात.",
     ],
 }
 
@@ -64,7 +71,7 @@ def author_schema():
     return {"@type": "Person", "@id": f"{SITE}{AUTHOR['url']}#person", "name": AUTHOR["name"],
             "alternateName": AUTHOR["name_hi"], "url": SITE + AUTHOR["url"], "image": SITE + AUTHOR["image"],
             "description": AUTHOR["short"], "knowsAbout": ["Numerology", "Vedic numerology", "Bhagyank", "Mulank", "Namank"],
-            "knowsLanguage": ["en", "hi"], "worksFor": {"@id": f"{SITE}/#organization"}}
+            "knowsLanguage": ["en", "hi", "mr"], "worksFor": {"@id": f"{SITE}/#organization"}}
 
 SPARKLE = (
     '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.9 5.6L19.5 9.5l-5.6 1.9L12 17l-1.9-5.6'
@@ -93,6 +100,7 @@ FOOTER = [
     ("/gemstone-recommendation", "Gemstone Guide"),
     ("/lo-shu-grid-calculator", "Lo Shu Grid Calculator"),
     ("/hi", "भाग्यांक कैलकुलेटर (हिंदी)"),
+    ("/mr", "भाग्यांक कॅल्क्युलेटर (मराठी)"),
     ("/author/ananya-sharma", "Our Author"),
     ("/blog", "Blog"),
     ("/privacy-policy", "Privacy Policy"),
@@ -109,15 +117,13 @@ def page(*, path, title, description, body, lang="en", og_title=None, og_desc=No
          hreflang=False, schema=None, noindex=False, scripts=True):
     url = SITE + path if path != "/" else SITE + "/"
     alt = ""
-    if hreflang:
-        en_p, hi_p = ("/", "/hi") if hreflang is True else hreflang
-        en_u = SITE + "/" if en_p == "/" else SITE + en_p
-        alt = (f'<link rel="alternate" hreflang="en" href="{en_u}">\n'
-               f'<link rel="alternate" hreflang="hi" href="{SITE}{hi_p}">\n'
-               f'<link rel="alternate" hreflang="x-default" href="{en_u}">\n')
+    ls = lang_set(path) if hreflang else None
+    if ls:
+        alt = "".join(f'<link rel="alternate" hreflang="{k}" href="{v}">\n' for k, v in ls.items())
+        alt += f'<link rel="alternate" hreflang="x-default" href="{ls["en"]}">\n'
     og_title = og_title or title
     og_desc = og_desc or description
-    locale = "hi_IN" if lang == "hi" else "en_IN"
+    locale = {"hi": "hi_IN", "mr": "mr_IN"}.get(lang, "en_IN")
     robots = "noindex, follow" if noindex else "index, follow"
     head = f"""<!DOCTYPE html>
 <html lang="{lang}">
@@ -215,6 +221,9 @@ def reviewed_by(lang="en"):
     if lang == "hi":
         label, name, link = "लेखिका", "अनन्या शर्मा (Ananya Sharma)", "लेखिका के बारे में और जानें"
         alt = "अनन्या शर्मा, भाग्यांक कैलकुलेटर की लेखिका"
+    elif lang == "mr":
+        label, name, link = "लेखिका", "अनन्या शर्मा (Ananya Sharma)", "लेखिकेबद्दल अधिक माहिती"
+        alt = "अनन्या शर्मा, भाग्यांक कॅल्क्युलेटरच्या लेखिका"
     else:
         label, name, link = "Written by", "Ananya Sharma (अनन्या शर्मा)", "More about the author"
         alt = "Ananya Sharma, author of the Bhagyank Calculator numerology guides"
@@ -276,6 +285,9 @@ def bhagyank_form(lang):
         "hi": dict(h="अपनी जन्मतिथि चुनें", d="दिन", m="महीना", y="वर्ष", b="मेरा भाग्यांक निकालें",
                    n="100% मुफ़्त · कोई साइन-अप नहीं · तुरंत परिणाम", et="आपका भाग्य आपका इंतज़ार कर रहा है",
                    ex="अपनी जन्मतिथि चुनें और “मेरा भाग्यांक निकालें” दबाएँ। आपका भाग्यांक, स्वामी ग्रह, खूबियाँ और शुभ रंग तुरंत दिखेंगे।"),
+        "mr": dict(h="तुमची जन्मतारीख निवडा", d="दिवस", m="महिना", y="वर्ष", b="माझा भाग्यांक काढा",
+                   n="100% मोफत · साइन-अप नाही · लगेच उत्तर", et="तुमचे भाग्य तुमची वाट पाहत आहे",
+                   ex="तुमची जन्मतारीख निवडा आणि “माझा भाग्यांक काढा” दाबा. तुमचा भाग्यांक, स्वामी ग्रह, गुणवैशिष्ट्ये आणि शुभ रंग लगेच दिसतील."),
     }[lang]
     return f"""    <div class="calc-grid" data-calc="bhagyank" data-lang="{lang}">
       <form class="card calc-form" novalidate>
@@ -317,6 +329,14 @@ def meanings_grid(lang):
                 f'</div></div><p class="small muted">{e(i["summary"])}</p>'
                 f'<p class="xs"><span class="gold">Lucky colors:</span> <span class="muted">{e(", ".join(i["luckyColors"]))}</span></p>'
                 f'<p class="xs"><a class="link" href="/bhagyank/{n}">Read the full Bhagyank {n} meaning</a></p></article>')
+        elif lang == "mr":
+            i = MR[str(n)]
+            cards.append(
+                f'<article class="card mini"><div class="num-row"><span class="num">{n}</span><div>'
+                f'<h3>भाग्यांक {n} - {e(i["title"])}</h3><p class="xs muted">स्वामी ग्रह: {e(i["planet"])}</p>'
+                f'</div></div><p class="small muted">{e(i["summary"])}</p>'
+                f'<p class="xs"><span class="gold">योग्य करिअर:</span> <span class="muted">{e(i["career"])}</span></p>'
+                f'<p class="xs"><a class="link" href="/mr/bhagyank/{n}">भाग्यांक {n} चा संपूर्ण अर्थ वाचा</a></p></article>')
         else:
             i = HI[str(n)]
             cards.append(
@@ -339,7 +359,8 @@ def compare_table(rows, heads):
 def home():
     desc = ("Free Bhagyank Calculator (Destiny Number / Bhagya Ank) based on your date of birth. Instantly find your "
             "Bhagyank in Vedic numerology, its ruling planet, meaning, lucky traits and how it shapes your life path.")
-    extra = ('<p class="small muted">हिंदी में पढ़ें: <a href="/hi" hreflang="hi" lang="hi" class="link">भाग्यांक कैलकुलेटर</a></p>')
+    extra = ('<p class="small muted"><span lang="hi">हिंदी में पढ़ें: <a href="/hi" hreflang="hi" class="link">भाग्यांक कैलकुलेटर</a></span>'
+             ' · <span lang="mr">मराठीत वाचा: <a href="/mr" hreflang="mr" class="link">भाग्यांक कॅल्क्युलेटर</a></span></p>')
     content = f"""<div class="container narrow content">
 {section("what-is-bhagyank", "What is Bhagyank (Destiny Number)?", '''
 <p><strong>Bhagyank</strong> - also known as the <strong>Destiny Number</strong> or <strong>Bhagya Ank</strong> - is one of the most important numbers in Vedic numerology. It is derived from your complete date of birth and reveals the path your life is destined to follow: your purpose, opportunities, lessons and the direction in which your journey naturally unfolds.</p>
@@ -385,7 +406,8 @@ def home():
 def hindi():
     desc = ("मुफ़्त भाग्यांक कैलकुलेटर: अपनी जन्मतिथि से तुरंत भाग्यांक (डेस्टिनी नंबर) निकालें। जानें भाग्यांक कैसे निकालें, "
             "भाग्यांक 1 से 9 का अर्थ, स्वामी ग्रह, शुभ रंग और शुभ दिन।")
-    extra = '<p class="small muted" lang="en">Read in English: <a href="/" hreflang="en" class="link">Bhagyank Calculator</a></p>'
+    extra = ('<p class="small muted"><span lang="en">Read in English: <a href="/" hreflang="en" class="link">Bhagyank Calculator</a></span>'
+             ' · <span lang="mr">मराठीत वाचा: <a href="/mr" hreflang="mr" class="link">भाग्यांक कॅल्क्युलेटर</a></span></p>')
     content = f"""<div class="container narrow content">
 {section("bhagyank-kya-hai", "भाग्यांक क्या है?", '''
 <p><strong>भाग्यांक</strong> (Bhagyank), जिसे <strong>डेस्टिनी नंबर</strong> या <strong>भाग्य अंक</strong> भी कहते हैं, वैदिक अंक ज्योतिष के सबसे महत्वपूर्ण अंकों में से एक है। यह आपकी पूरी जन्मतिथि से निकाला जाता है और बताता है कि आपका जीवन किस दिशा में आगे बढ़ेगा - आपका उद्देश्य, अवसर, सीख और संघर्ष।</p>
@@ -644,6 +666,7 @@ import datetime as _dt
 TODAY = _dt.date.today()
 MONTHS_EN = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
              "October", "November", "December"]
+MONTHS_MR = ["जानेवारी", "फेब्रुवारी", "मार्च", "एप्रिल", "मे", "जून", "जुलै", "ऑगस्ट", "सप्टेंबर", "ऑक्टोबर", "नोव्हेंबर", "डिसेंबर"]
 MONTHS_HI = ["जनवरी", "फ़रवरी", "मार्च", "अप्रैल", "मई", "जून", "जुलाई", "अगस्त", "सितंबर", "अक्टूबर", "नवंबर", "दिसंबर"]
 
 STONES = {1: ("Ruby", "माणिक्य"), 2: ("Pearl", "मोती"), 3: ("Yellow Sapphire", "पुखराज"), 4: ("Hessonite", "गोमेद"),
@@ -658,7 +681,7 @@ def reduce_num(n):
 
 
 def updated_line(lang):
-    txt = "अंतिम अपडेट: __MODIFIED_HI__" if lang == "hi" else "Last updated: __MODIFIED_EN__"
+    txt = {"hi": "अंतिम अपडेट: __MODIFIED_HI__", "mr": "शेवटचे अपडेट: __MODIFIED_MR__"}.get(lang, "Last updated: __MODIFIED_EN__")
     return f'<p class="container narrow updated xs muted"><time datetime="__MODIFIED__">{txt}</time></p>'
 
 
@@ -737,7 +760,7 @@ def number_page(n):
 {section("lucky", f"Lucky colors, days and gemstone for Bhagyank {n}", f'<div class="table-wrap"><table><tbody><tr><td>Ruling planet</td><td>{e(planet)}</td></tr><tr><td>Lucky colors</td><td>{e(", ".join(i["luckyColors"]))}</td></tr><tr><td>Lucky days</td><td>{e(", ".join(i["luckyDays"]))}</td></tr><tr><td>Traditional gemstone</td><td>{e(stone)} ({stone_hi})</td></tr></tbody></table></div><p class="small">Gemstones are a traditional practice. See our <a class="link" href="/gemstone-recommendation">gemstone guide</a> and consult a qualified astrologer before wearing one.</p>')}
 {section("examples", f"Examples: dates of birth with Bhagyank {n}", f'<p>Your Bhagyank is {n} when all the digits of your full date of birth reduce to {n}. A few examples:</p><div class="card example"><ul>{ex_rows}</ul></div><p>Not sure about yours? Use the free <a class="link" href="/#calculator">Bhagyank Calculator</a> - it takes your date of birth and shows your number instantly.</p>')}
 {section("trust", "Should you trust your Bhagyank?", STAT_EN)}
-{section("hindi", f"भाग्यांक {n} (हिंदी में)", f'<p lang="hi">{e(h["summary"])}</p><p class="small"><a class="link" href="/hi/bhagyank/{n}" hreflang="hi">भाग्यांक {n} का पूरा अर्थ हिंदी में पढ़ें</a></p>')}
+{section("hindi", f"भाग्यांक {n} (हिंदी में)", f'<p lang="hi">{e(h["summary"])}</p><p class="small"><a class="link" href="/hi/bhagyank/{n}" hreflang="hi">भाग्यांक {n} का पूरा अर्थ हिंदी में पढ़ें</a> · <a class="link" href="/mr/bhagyank/{n}" hreflang="mr" lang="mr">मराठीत वाचा</a></p>')}
 {section("faq", f"Bhagyank {n}: frequently asked questions", faq_block(faqs))}
 <section class="content-section"><h2>Other destiny numbers</h2><nav class="pills" aria-label="Bhagyank numbers">{others}</nav>
 <p class="small"><a class="link" href="/bhagyank/{prev_n}">← Bhagyank {prev_n}</a> · <a class="link" href="/bhagyank/{next_n}">Bhagyank {next_n} →</a></p></section>
@@ -924,7 +947,7 @@ def number_page_hi(n):
 {section("bharosa", "क्या भाग्यांक पर भरोसा करना चाहिए?", STAT_HI)}
 {section("faq", f"भाग्यांक {n}: अक्सर पूछे जाने वाले सवाल", faq_block(faqs))}
 <section class="content-section"><h2>बाकी भाग्यांक</h2><nav class="pills" aria-label="भाग्यांक">{others}</nav>
-<p class="small"><a class="link" href="/hi/bhagyank/{prev_n}">← भाग्यांक {prev_n}</a> · <a class="link" href="/hi/bhagyank/{next_n}">भाग्यांक {next_n} →</a> · <a class="link" href="/bhagyank/{n}" hreflang="en" lang="en">Read in English</a></p></section>
+<p class="small"><a class="link" href="/hi/bhagyank/{prev_n}">← भाग्यांक {prev_n}</a> · <a class="link" href="/hi/bhagyank/{next_n}">भाग्यांक {next_n} →</a> · <a class="link" href="/bhagyank/{n}" hreflang="en" lang="en">Read in English</a> · <a class="link" href="/mr/bhagyank/{n}" hreflang="mr" lang="mr">मराठीत वाचा</a></p></section>
 <p class="card disclaimer">अस्वीकरण: यह जानकारी पारंपरिक वैदिक अंक ज्योतिष पर आधारित है और केवल जानकारी के लिए है। इसे किसी पेशेवर सलाह का विकल्प न मानें।</p>
 </div>
 </div>
@@ -1139,35 +1162,48 @@ def render_body(p):
             .replace("{{PEW_US_URL}}", PEW_US_URL).replace("{{PEW_IN_URL}}", PEW_URL))
     heads = re.findall(r'<section id="([^"]+)" class="content-section"><h2>(.*?)</h2>', body)
     if len(heads) >= 3:
-        label = "इस लेख में" if p["lang"] == "hi" else "In this guide"
+        label = {"hi": "इस लेख में", "mr": "या लेखात"}.get(p["lang"], "In this guide")
         lis = "".join(f'<li><a href="#{i}">{re.sub("<[^>]+>", "", t)}</a></li>' for i, t in heads)
         body = f'<nav class="toc card" aria-label="Contents"><p class="eyebrow">{label}</p><ol>{lis}</ol></nav>\n' + body
     return body
 
 
 def post_url(p):
-    return ("/hi/blog/" if p["lang"] == "hi" else "/blog/") + p["slug"]
+    return ("/blog/" if p["lang"] == "en" else f"/{p['lang']}/blog/") + p["slug"]
+
+
+POST_TXT = {
+    "en": dict(home=("/", "Bhagyank Calculator"), blog="Blog", by="By", name="Ananya Sharma", months=MONTHS_EN,
+               faq="Frequently Asked Questions", related="Related tools and guides",
+               disc="Disclaimer: This article is based on traditional numerology and is for information only. It is not a substitute for professional advice."),
+    "hi": dict(home=("/hi", "भाग्यांक कैलकुलेटर"), blog="ब्लॉग", by="लेखिका", name="अनन्या शर्मा", months=MONTHS_HI,
+               faq="अक्सर पूछे जाने वाले सवाल", related="ये भी पढ़ें",
+               disc="अस्वीकरण: यह लेख पारंपरिक अंक ज्योतिष पर आधारित है और केवल जानकारी के लिए है। इसे पेशेवर सलाह का विकल्प न मानें।"),
+    "mr": dict(home=("/mr", "भाग्यांक कॅल्क्युलेटर"), blog="ब्लॉग", by="लेखिका", name="अनन्या शर्मा", months=MONTHS_MR,
+               faq="नेहमी विचारले जाणारे प्रश्न", related="हेही वाचा",
+               disc="अस्वीकरण: हा लेख पारंपरिक अंकशास्त्रावर आधारित आहे आणि फक्त माहितीसाठी आहे. याला व्यावसायिक सल्ल्याचा पर्याय मानू नका."),
+}
 
 
 def post_page(p):
     url_path = post_url(p)
     url = SITE + url_path
-    hi = p["lang"] == "hi"
+    t = POST_TXT[p["lang"]]
     pub = _dt.date.fromisoformat(p["published"])
-    date_txt = (f"{pub.day} {MONTHS_HI[pub.month - 1]} {pub.year}" if hi else f"{pub.day} {MONTHS_EN[pub.month - 1]} {pub.year}")
-    rel = "".join(f'<li><a class="link" href="{h}">{e(t)}</a></li>' for h, t in p["related"])
-    crumbs_home = ("/hi", "भाग्यांक कैलकुलेटर") if hi else ("/", "Bhagyank Calculator")
-    body = f"""<main{' lang="hi"' if hi else ''}>
+    date_txt = f"{pub.day} {t['months'][pub.month - 1]} {pub.year}"
+    rel = "".join(f'<li><a class="link" href="{h}">{e(x)}</a></li>' for h, x in p["related"])
+    crumbs_home = t["home"]
+    body = f"""<main{'' if p["lang"] == "en" else f' lang="{p["lang"]}"'}>
 <article class="container narrow num-page blog-post">
-<nav class="crumbs xs muted" aria-label="Breadcrumb"><a href="{crumbs_home[0]}">{crumbs_home[1]}</a> <span aria-hidden="true">›</span> <a href="/blog">{"ब्लॉग" if hi else "Blog"}</a> <span aria-hidden="true">›</span> <span>{e(p["h1"])}</span></nav>
+<nav class="crumbs xs muted" aria-label="Breadcrumb"><a href="{crumbs_home[0]}">{crumbs_home[1]}</a> <span aria-hidden="true">›</span> <a href="/blog">{t["blog"]}</a> <span aria-hidden="true">›</span> <span>{e(p["h1"])}</span></nav>
 <h1 class="post-title">{e(p["h1"])}</h1>
-<p class="post-meta xs muted">{"लेखिका" if hi else "By"} <a class="link" href="{AUTHOR['url']}">{"अनन्या शर्मा" if hi else "Ananya Sharma"}</a> · <time datetime="{p['published']}">{date_txt}</time></p>
+<p class="post-meta xs muted">{t["by"]} <a class="link" href="{AUTHOR['url']}">{t["name"]}</a> · <time datetime="{p['published']}">{date_txt}</time></p>
 <p class="lead-left">{e(p["intro"])}</p>
 <div class="content">
 {render_body(p)}
-{section("faq", "अक्सर पूछे जाने वाले सवाल" if hi else "Frequently Asked Questions", faq_block(p["faqs"]))}
-<section class="content-section"><h2>{"ये भी पढ़ें" if hi else "Related tools and guides"}</h2><ul>{rel}</ul></section>
-<p class="card disclaimer">{"अस्वीकरण: यह लेख पारंपरिक अंक ज्योतिष पर आधारित है और केवल जानकारी के लिए है। इसे पेशेवर सलाह का विकल्प न मानें।" if hi else "Disclaimer: This article is based on traditional numerology and is for information only. It is not a substitute for professional advice."}</p>
+{section("faq", t["faq"], faq_block(p["faqs"]))}
+<section class="content-section"><h2>{t["related"]}</h2><ul>{rel}</ul></section>
+<p class="card disclaimer">{t["disc"]}</p>
 </div>
 </article>
 {reviewed_by(p["lang"])}
@@ -1190,14 +1226,14 @@ def post_page(p):
 
 def blog_index():
     cards = "".join(
-        f'<article class="card mini"><p class="eyebrow">{"हिंदी" if p["lang"] == "hi" else "English"}</p>'
-        f'<h2 class="h-card"><a href="{post_url(p)}"{" lang=hi" if p["lang"] == "hi" else ""}>{e(p["h1"])}</a></h2>'
-        f'<p class="small muted"{" lang=hi" if p["lang"] == "hi" else ""}>{e(p["desc"])}</p>'
-        f'<p class="xs"><a class="link" href="{post_url(p)}">{"पूरा लेख पढ़ें" if p["lang"] == "hi" else "Read the guide"}</a></p></article>'
+        f'<article class="card mini"><p class="eyebrow">{ {"hi": "हिंदी", "mr": "मराठी"}.get(p["lang"], "English")}</p>'
+        f'<h2 class="h-card"><a href="{post_url(p)}"{"" if p["lang"] == "en" else " lang=" + p["lang"]}>{e(p["h1"])}</a></h2>'
+        f'<p class="small muted"{"" if p["lang"] == "en" else " lang=" + p["lang"]}>{e(p["desc"])}</p>'
+        f'<p class="xs"><a class="link" href="{post_url(p)}">{ {"hi": "पूरा लेख पढ़ें", "mr": "संपूर्ण लेख वाचा"}.get(p["lang"], "Read the guide")}</a></p></article>'
         for p in POSTS)
     body = f"""<main class="container narrow prose-page">
 <h1>Numerology Blog</h1>
-<p class="lead-left muted">Simple, step-by-step guides on Bhagyank, Mulank, Lo Shu Grid and number matching - in English and Hindi.</p>
+<p class="lead-left muted">Simple, step-by-step guides on Bhagyank, Mulank, Lo Shu Grid and number matching - in English, Hindi and Marathi.</p>
 <div class="grid-2 mt-lg">{cards}</div>
 </main>"""
     schema = {"@context": "https://schema.org", "@type": "Blog", "url": f"{SITE}/blog", "name": "Bhagyank Calculator Blog",
@@ -1207,28 +1243,188 @@ def blog_index():
                 description="Simple numerology guides in English and Hindi: Mulank and Bhagyank combinations, marriage matching, Lo Shu Grid and more.",
                 body=body, schema=schema)
 
+# ---------------------------------------------------------------- Marathi pages
+
+STAT_MR = ('<p>अंकशास्त्रात रस असणारे तुम्ही एकटे नाही. भारतातील 29,999 प्रौढांवर झालेल्या <a class="link" href="' + PEW_URL +
+           '" target="_blank" rel="noopener">Pew Research च्या सर्वेक्षणात</a> 49% हिंदूंनी सांगितले की त्यांचा ज्योतिषावर विश्वास आहे. '
+           'तरीही भाग्यांकाकडे एक मार्गदर्शक म्हणून पाहा, पक्का नियम म्हणून नाही. तो तुमची बलस्थाने दाखवू शकतो, '
+           'पण शेवटी तुमची मेहनत आणि तुमचे निर्णयच तुमचे आयुष्य घडवतात.</p>')
+
+FAQ_MR = [
+    ("भाग्यांक म्हणजे काय?",
+     "भाग्यांकाला डेस्टिनी नंबर किंवा भाग्य अंक असेही म्हणतात. वैदिक अंकशास्त्रातील हा एक महत्त्वाचा अंक आहे, जो तुमच्या पूर्ण जन्मतारखेवरून काढला जातो. तो तुमच्या आयुष्याची दिशा, उद्देश आणि भाग्य याबद्दल सांगतो."),
+    ("भाग्यांक कसा काढायचा?",
+     "तुमच्या पूर्ण जन्मतारखेचे (दिवस, महिना आणि वर्ष) सर्व अंक एकत्र करा. एकच अंक उरेपर्यंत बेरजेचे अंक पुन्हा पुन्हा जोडत राहा. उदाहरण: 15-08-1990 साठी 1+5+0+8+1+9+9+0 = 33 आणि 3+3 = 6, म्हणजे भाग्यांक 6."),
+    ("मूलांक आणि भाग्यांक यात काय फरक आहे?",
+     "मूलांक फक्त जन्माच्या तारखेवरून (दिवसावरून) काढला जातो आणि तो तुमचा स्वभाव दाखवतो. भाग्यांक पूर्ण जन्मतारखेवरून काढला जातो आणि तो तुमच्या आयुष्याचा मार्ग दाखवतो. मूलांक सांगतो तुम्ही कोण आहात, तर भाग्यांक सांगतो तुमचे आयुष्य कुठे चालले आहे."),
+    ("सगळ्यात शुभ भाग्यांक कोणता?",
+     "कोणताही भाग्यांक स्वतःहून चांगला किंवा वाईट नसतो. प्रत्येक अंकाची स्वतःची बलस्थाने आणि आव्हाने असतात. तुमचा भाग्यांक तुमच्या मूलांक आणि नामांकाशी किती जुळतो, हे जास्त महत्त्वाचे आहे. साधारणपणे 1, 3, 5, 6 आणि 9 हे अंक भौतिक आणि सामाजिक यशासाठी शुभ मानले जातात."),
+    ("भाग्यांक कधी बदलतो का?",
+     "नाही. भाग्यांक तुमच्या जन्मतारखेवर आधारित असतो आणि जन्मतारीख कधीच बदलत नाही, म्हणून भाग्यांकही बदलत नाही. मात्र नावाची दुरुस्ती, शुभ रंग आणि शुभ दिवस वापरून तुम्ही भाग्यांकाच्या ऊर्जेचा चांगला उपयोग करू शकता."),
+    ("हा कॅल्क्युलेटर 11, 22 आणि 33 यांना मास्टर नंबर मानतो का?",
+     "नाही. वैदिक अंकशास्त्रात भाग्यांक नेहमी 1 ते 9 मधील एका अंकापर्यंत कमी केला जातो, कारण प्रत्येक अंक नवग्रहांपैकी एका ग्रहाशी जोडलेला असतो. त्यामुळे 11 चा भाग्यांक 2, 22 चा 4 आणि 33 चा 6 होतो. काही पाश्चात्य (पायथागोरियन) कॅल्क्युलेटर 11, 22, 33 यांना मास्टर नंबर मानतात, म्हणून त्यांचे उत्तर वेगळे दिसू शकते."),
+    ("हा भाग्यांक कॅल्क्युलेटर मोफत आहे का?",
+     "हो. हा भाग्यांक कॅल्क्युलेटर पूर्णपणे मोफत आहे, साइन-अपची गरज नाही, आणि तो लगेच तुमचा भाग्यांक, स्वामी ग्रह, गुणवैशिष्ट्ये, शुभ रंग आणि शुभ दिवस दाखवतो."),
+]
+
+IDIOM_MR = {
+    1: "पण लक्षात ठेवा, एकीचे बळ मोठे असते - चांगल्या टीमसोबत भाग्यांक 1 आणखी पुढे जातो.",
+    2: "यांच्यावर 'संगत तशी रंगत' हे अगदी लागू पडते, म्हणून चांगल्या माणसांची साथ यांच्यासाठी महत्त्वाची असते.",
+    3: "ज्ञान वाटल्याने वाढते, असे यांना मनापासून वाटते, म्हणून इतरांना शिकवण्यात यांना आनंद मिळतो.",
+    4: "ही माणसे अनेकदा चाकोरीबाहेरचा विचार करतात आणि स्वतःला योग्य वाटेल तोच रस्ता निवडतात.",
+    5: "अशी माणसे बहुतेक वेळा हरहुन्नरी असतात, फक्त एक-दोन कामांवर टिकून मेहनत करायला शिकणे गरजेचे असते.",
+    6: "आपल्या बोलण्याने आणि वागण्याने ही माणसे लवकरच सगळ्यांचे मन जिंकतात.",
+    7: "कधी कधी ही माणसे प्रत्येक गोष्टीचा कीस पाडतात, म्हणून प्रत्येक गोष्टीवर जास्त विचार करणे टाळावे.",
+    8: "यांच्यासाठी 'धीर धरी रे धीरापोटी, असती मोठी फळे गोमटी' हे अगदी खरे ठरते - यश उशिरा मिळते, पण टिकते.",
+    9: "रागाच्या भरात बोललेले शब्द परत घेता येत नाहीत, म्हणून उत्तर देण्याआधी थोडे थांबणे यांच्यासाठी चांगले असते.",
+}
+
+STONES_MR = {1: "माणिक", 2: "मोती", 3: "पुष्कराज", 4: "गोमेद", 5: "पाचू", 6: "हिरा", 7: "लसण्या", 8: "नीलम", 9: "पोवळे"}
+
+
+def marathi():
+    desc = ("मोफत भाग्यांक कॅल्क्युलेटर: जन्मतारखेवरून लगेच भाग्यांक (डेस्टिनी नंबर) काढा. भाग्यांक कसा काढायचा, "
+            "भाग्यांक 1 ते 9 चा अर्थ, स्वामी ग्रह, शुभ रंग आणि शुभ दिवस - सोप्या मराठीत.")
+    extra = ('<p class="small muted"><span lang="en">Read in English: <a href="/" hreflang="en" class="link">Bhagyank Calculator</a></span>'
+             ' · <span lang="hi">हिंदी में पढ़ें: <a href="/hi" hreflang="hi" class="link">भाग्यांक कैलकुलेटर</a></span></p>')
+    content = f"""<div class="container narrow content">
+{section("bhagyank-mhanje-kay", "भाग्यांक म्हणजे काय?", '''
+<p><strong>भाग्यांक</strong> (Bhagyank), ज्याला <strong>डेस्टिनी नंबर</strong> किंवा <strong>भाग्य अंक</strong> असेही म्हणतात, हा वैदिक अंकशास्त्रातील सर्वात महत्त्वाच्या अंकांपैकी एक आहे. तो तुमच्या पूर्ण जन्मतारखेवरून काढला जातो आणि तुमचे आयुष्य कोणत्या दिशेने जाईल हे सांगतो - तुमचा उद्देश, संधी, शिकवण आणि संघर्ष.</p>
+<p>तुमचा स्वभाव अनेक गोष्टींमधून घडतो, पण भाग्यांक हा तुमच्या कर्माचा एक लपलेला नकाशा आहे. तो समजून घेतल्यास करिअर, नातेसंबंध आणि स्वतःच्या प्रगतीबद्दलचे निर्णय तुम्ही अधिक चांगल्या प्रकारे घेऊ शकता.</p>''')}
+{section("bhagyank-kasa-kadhaycha", "भाग्यांक कसा काढायचा?", '''
+<p>भाग्यांक काढणे खूप सोपे आहे. तुमच्या पूर्ण जन्मतारखेचे (दिवस + महिना + वर्ष) <strong>प्रत्येक अंक</strong> जोडा आणि बेरीज 1 ते 9 मधील एका अंकापर्यंत कमी करा.</p>
+<div class="card example"><p class="gold strong">उदाहरण: जन्मतारीख = 15 ऑगस्ट 1990</p><ol>
+<li>जन्मतारखेचे अंक लिहा: 1, 5, 0, 8, 1, 9, 9, 0</li>
+<li>सर्व अंक जोडा: 1 + 5 + 0 + 8 + 1 + 9 + 9 + 0 = 33</li>
+<li>एक अंक करा: 3 + 3 = 6</li>
+<li><strong>भाग्यांक = 6</strong></li></ol></div>
+<p>हे गणित हाताने करायची गरज नाही - वर दिलेला <a href="#calculator" class="link">भाग्यांक कॅल्क्युलेटर</a> लगेच तुमचा भाग्यांक, स्वामी ग्रह आणि शुभ रंग सांगतो. तुम्ही आमच्या <a href="/moolank-calculator" class="link">मूलांक कॅल्क्युलेटर</a>ने तुमचा मूलांकही काढू शकता, किंवा <a href="/lo-shu-grid-calculator" class="link">लो शू ग्रिड</a> बनवून पाहू शकता.</p>''')}
+{section("mulank-ani-bhagyank", "मूलांक आणि भाग्यांक यातील फरक",
+         "<p>बरेच लोक मूलांक आणि भाग्यांक एकच समजतात. दोन्ही जन्मतारखेवरूनच काढले जातात, पण ते वेगवेगळ्या गोष्टी सांगतात:</p>"
+         + compare_table([("कशावरून काढतात", "फक्त जन्माचा दिवस", "पूर्ण जन्मतारीख"),
+                          ("काय दाखवतो", "स्वभाव आणि व्यक्तिमत्त्व", "आयुष्याचा मार्ग आणि भाग्य"),
+                          ("कोणत्या प्रश्नाचे उत्तर", "मी कोण आहे?", "माझे आयुष्य कुठे चालले आहे?")],
+                         ["मुद्दा", "मूलांक", "भाग्यांक"])
+         + "<p>मूलांक आणि भाग्यांक एकत्र वाचल्यास तुमच्या स्वभावाचे आणि भाग्याचे पूर्ण चित्र मिळते, म्हणूनच प्रत्येक चांगल्या अंकशास्त्र वाचनात दोन्ही पाहिले जातात.</p>")}
+{section("bhagyank-arth", "भाग्यांक 1 ते 9: अर्थ आणि स्वामी ग्रह",
+         "<p>प्रत्येक भाग्यांकाचा एक स्वामी ग्रह असतो, जो तुमच्या भाग्यावर प्रभाव टाकतो. खाली सर्व नऊ भाग्यांकांची थोडक्यात ओळख दिली आहे.</p>" + meanings_grid("mr"))}
+{section("vishwas", "भाग्यांकावर किती विश्वास ठेवावा?", STAT_MR)}
+{section("faq", "नेहमी विचारले जाणारे प्रश्न", faq_block(FAQ_MR))}
+<p class="card disclaimer">अस्वीकरण: हा भाग्यांक कॅल्क्युलेटर आणि यातील माहिती पारंपरिक वैदिक अंकशास्त्रावर आधारित आहे आणि फक्त माहिती व मनोरंजनासाठी आहे. याला कोणत्याही व्यावसायिक सल्ल्याचा पर्याय मानू नका.</p>
+</div>"""
+    body = ('<main lang="mr">' + hero("मोफत वैदिक अंकशास्त्र टूल", "भाग्यांक कॅल्क्युलेटर - जन्मतारखेवरून तुमचा भाग्यांक जाणून घ्या",
+                                     'तुमच्या जन्मतारखेवरून लगेच तुमचा <strong>भाग्यांक (Destiny Number)</strong> काढा. तुमचा स्वामी ग्रह, स्वभाव, गुणवैशिष्ट्ये, शुभ रंग आणि आयुष्याचा मार्ग जाणून घ्या.',
+                                     extra, stars=True)
+            + bhagyank_form("mr") + content + reviewed_by("mr") + updated_line("mr") + "</main>")
+    return page(path="/mr", lang="mr",
+                title="भाग्यांक कॅल्क्युलेटर - जन्मतारखेवरून भाग्यांक कसा काढायचा (Bhagyank Calculator in Marathi)",
+                description=desc, body=body, hreflang=True,
+                og_title="भाग्यांक कॅल्क्युलेटर - जन्मतारखेवरून तुमचा भाग्यांक जाणून घ्या",
+                schema=bhagyank_schema("/mr", "mr", "भाग्यांक कॅल्क्युलेटर", desc, FAQ_MR))
+
+
+def example_dates_mr(n):
+    rows = []
+    for d, digits, total in example_dates(n):
+        steps = f'{" + ".join(digits)} = {total}'
+        t = total
+        while t > 9:
+            nxt = sum(int(c) for c in str(t))
+            steps += f' → {" + ".join(str(t))} = {nxt}'
+            t = nxt
+        rows.append(f'<li>{d.day} {MONTHS_MR[d.month - 1]} {d.year}: {steps} → <strong>भाग्यांक {n}</strong></li>')
+    return "".join(rows)
+
+
+def number_page_mr(n):
+    i, en = MR[str(n)], EN[str(n)]
+    stone, stone_mr = STONES[n][0], STONES_MR[n]
+    title = f"भाग्यांक {n} चा अर्थ: स्वभाव, करिअर, शुभ रंग आणि शुभ दिवस"
+    desc = (f"भाग्यांक {n} चा स्वामी ग्रह {i['planet']} आहे. भाग्यांक {n} असलेल्या लोकांचा स्वभाव, गुण, कमतरता, योग्य करिअर, "
+            f"शुभ रंग, शुभ दिवस आणि रत्न - सोप्या मराठीत, उदाहरणांसह.")
+    faqs = [
+        (f"भाग्यांक {n} चा स्वामी ग्रह कोणता?",
+         f"भाग्यांक {n} चा स्वामी ग्रह {i['planet']} आहे. ज्यांच्या पूर्ण जन्मतारखेची बेरीज {n} येते, त्यांच्यावर या ग्रहाच्या ऊर्जेचा प्रभाव मानला जातो."),
+        (f"भाग्यांक {n} साठी शुभ रंग आणि शुभ दिवस कोणते?",
+         f"भाग्यांक {n} साठी शुभ रंग {', '.join(i['luckyColors'])} आहेत, आणि शुभ दिवस {' आणि '.join(i['luckyDays'])} मानले जातात."),
+        (f"भाग्यांक {n} असलेल्यांसाठी कोणते करिअर चांगले?", f"भाग्यांक {n} साठी ही क्षेत्रे चांगली मानली जातात: {i['career']}"),
+        (f"भाग्यांक {n} चे रत्न कोणते?",
+         f"पारंपरिक अंकशास्त्रात {stone_mr} ({stone}) हे रत्न अंक {n} शी जोडले जाते. कोणतेही रत्न घालण्याआधी जाणकार ज्योतिषाचा सल्ला नक्की घ्या."),
+        (f"माझा भाग्यांक {n} आहे हे कसे ओळखायचे?",
+         f"तुमच्या पूर्ण जन्मतारखेचे (दिवस, महिना आणि वर्ष) सर्व अंक जोडा. एक अंक उरेपर्यंत बेरजेचे अंक पुन्हा जोडत राहा. शेवटी {n} आला तर तुमचा भाग्यांक {n} आहे."),
+    ]
+    others = " ".join(
+        f'<a class="pill{" active" if k == n else ""}" href="/mr/bhagyank/{k}"{" aria-current=\"page\"" if k == n else ""}>{k}</a>'
+        for k in range(1, 10))
+    prev_n, next_n = (n - 2) % 9 + 1, n % 9 + 1
+    ul = lambda xs: "<ul>" + "".join(f"<li>{e(x)}</li>" for x in xs) + "</ul>"
+    body = f"""<main lang="mr">
+<div class="container narrow num-page">
+<nav class="crumbs xs muted" aria-label="Breadcrumb"><a href="/mr">भाग्यांक कॅल्क्युलेटर</a> <span aria-hidden="true">›</span> <span>भाग्यांक {n}</span></nav>
+<div class="num-hero">
+  <div class="circle"><span>{n}</span><small>भाग्यांक</small></div>
+  <div>
+    <h1>भाग्यांक {n} चा अर्थ - {e(i["title"])}</h1>
+    <p class="muted">स्वामी ग्रह: {e(i["planet"])} · <span lang="en">Bhagyank {n} - {e(en["title"])}</span></p>
+  </div>
+</div>
+<p class="lead-left">{e(i["summary"])}</p>
+<p><a class="btn inline" href="/mr#calculator">तुमचा भाग्यांक काढा</a></p>
+
+<div class="content">
+{section("kasa-banto", f"भाग्यांक {n} कसा तयार होतो?", f'<p>तुमच्या पूर्ण जन्मतारखेच्या सर्व अंकांची बेरीज कमी करत करत {n} वर येऊन थांबते, तेव्हा तुमचा भाग्यांक {n} असतो. खाली काही खऱ्या तारखांची उदाहरणे पाहा:</p><div class="card example"><ul>{example_dates_mr(n)}</ul></div><p>तारीख स्वतः जोडणे अवघड वाटत असेल, तर <a class="link" href="/mr#calculator">भाग्यांक कॅल्क्युलेटर</a>मध्ये जन्मतारीख टाका. उत्तर एका सेकंदात मिळेल.</p>')}
+{section("swabhav", f"भाग्यांक {n} असलेल्या लोकांचा स्वभाव", f'<p>भाग्यांक {n} असलेल्या लोकांमध्ये {e(i["planet"])} ग्रहाची ऊर्जा स्पष्ट दिसते. यांचे काही गुण यांना गर्दीपेक्षा वेगळे करतात, तर काही गोष्टींकडे यांना लक्ष द्यावे लागते. {e(IDIOM_MR[n])}</p><div class="info-grid"><div class="info"><h4>गुणवैशिष्ट्ये</h4>{ul(i["strengths"])}</div><div class="info"><h4 class="accent">कोणत्या गोष्टींकडे लक्ष द्यावे</h4>{ul(i["challenges"])}</div></div>')}
+{section("career", f"भाग्यांक {n} साठी योग्य करिअर", f'<p>{e(i["career"])}</p><p>ही क्षेत्रे भाग्यांक {n} च्या स्वभावाशी जुळतात. करिअरचा मोठा निर्णय घेण्याआधी तुमचा <a class="link" href="/moolank-calculator">मूलांक</a> आणि <a class="link" href="/namank-calculator">नामांक</a> सुद्धा पाहा, कारण तिन्ही अंक मिळून अधिक स्पष्ट चित्र दाखवतात.</p>')}
+{section("shubh", f"भाग्यांक {n} चे शुभ रंग, शुभ दिवस आणि रत्न", f'<div class="table-wrap"><table><tbody><tr><td>स्वामी ग्रह</td><td>{e(i["planet"])}</td></tr><tr><td>शुभ रंग</td><td>{e(", ".join(i["luckyColors"]))}</td></tr><tr><td>शुभ दिवस</td><td>{e(", ".join(i["luckyDays"]))}</td></tr><tr><td>रत्न</td><td>{stone_mr} ({e(stone)})</td></tr></tbody></table></div><p class="small">रत्न घालणे हा एक पारंपरिक उपाय आहे. घालण्याआधी जाणकार ज्योतिषाचा सल्ला नक्की घ्या. अधिक माहितीसाठी आमची <a class="link" href="/gemstone-recommendation">रत्न मार्गदर्शिका</a> पाहा.</p>')}
+{section("vishwas", "भाग्यांकावर किती विश्वास ठेवावा?", STAT_MR)}
+{section("faq", f"भाग्यांक {n}: नेहमी विचारले जाणारे प्रश्न", faq_block(faqs))}
+<section class="content-section"><h2>इतर भाग्यांक</h2><nav class="pills" aria-label="भाग्यांक">{others}</nav>
+<p class="small"><a class="link" href="/mr/bhagyank/{prev_n}">← भाग्यांक {prev_n}</a> · <a class="link" href="/mr/bhagyank/{next_n}">भाग्यांक {next_n} →</a> · <a class="link" href="/bhagyank/{n}" hreflang="en" lang="en">Read in English</a> · <a class="link" href="/hi/bhagyank/{n}" hreflang="hi" lang="hi">हिंदी में पढ़ें</a></p></section>
+<p class="card disclaimer">अस्वीकरण: ही माहिती पारंपरिक वैदिक अंकशास्त्रावर आधारित आहे आणि फक्त माहितीसाठी आहे. याला कोणत्याही व्यावसायिक सल्ल्याचा पर्याय मानू नका.</p>
+</div>
+</div>
+{reviewed_by("mr")}
+{updated_line("mr")}
+</main>"""
+    url = f"{SITE}/mr/bhagyank/{n}"
+    schema = {"@context": "https://schema.org", "@graph": [
+        {"@type": "Article", "@id": f"{url}#article", "headline": title, "description": desc, "url": url,
+         "inLanguage": "mr", "image": f"{SITE}/images/og-image.png", "datePublished": "__PUBLISHED__",
+         "dateModified": "__MODIFIED__", "author": author_schema(),
+         "publisher": {"@type": "Organization", "name": "Bhagyank Calculator", "url": SITE,
+                       "logo": {"@type": "ImageObject", "url": f"{SITE}/icon-512.png"}}, "mainEntityOfPage": url},
+        {"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "भाग्यांक कॅल्क्युलेटर", "item": f"{SITE}/mr"},
+            {"@type": "ListItem", "position": 2, "name": f"भाग्यांक {n}", "item": url}]},
+        {"@type": "FAQPage", "inLanguage": "mr", "mainEntity": [
+            {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faqs]}]}
+    return page(path=f"/mr/bhagyank/{n}", lang="mr", title=title, description=desc, body=body, schema=schema, hreflang=True)
+
 PAGES = {
-    "index.html": home, "hi.html": hindi, "moolank-calculator.html": moolank, "namank-calculator.html": namank,
+    "index.html": home, "hi.html": hindi, "mr.html": marathi, "moolank-calculator.html": moolank, "namank-calculator.html": namank,
     "gemstone-recommendation.html": gemstone, "lo-shu-grid-calculator.html": lo_shu_page, "about.html": about, "contact.html": contact,
     "privacy-policy.html": privacy, "terms-and-conditions.html": terms, "404.html": not_found,
 }
 
-SITEMAP = [("", "1.0", "weekly"), ("/hi", "0.9", "weekly"), ("/moolank-calculator", "0.9", "weekly"),
+SITEMAP = [("", "1.0", "weekly"), ("/hi", "0.9", "weekly"), ("/mr", "0.9", "weekly"), ("/moolank-calculator", "0.9", "weekly"),
            ("/namank-calculator", "0.8", "weekly"), ("/gemstone-recommendation", "0.8", "weekly"),
            ("/about", "0.5", "monthly"), ("/contact", "0.5", "monthly"),
            ("/privacy-policy", "0.3", "yearly"), ("/terms-and-conditions", "0.3", "yearly")] + \
           [(f"/bhagyank/{n}", "0.7", "monthly") for n in range(1, 10)] + \
           [(f"/hi/bhagyank/{n}", "0.7", "monthly") for n in range(1, 10)] + \
+          [(f"/mr/bhagyank/{n}", "0.7", "monthly") for n in range(1, 10)] + \
           [("/lo-shu-grid-calculator", "0.9", "weekly"), ("/author/ananya-sharma", "0.5", "monthly"),
            ("/blog", "0.6", "weekly"), ("/sitemap", "0.3", "monthly")] + [(post_url(p), "0.7", "monthly") for p in POSTS]
 
 
-def lang_pair(p):
-    if p in ("", "/hi"):
-        return (SITE + "/", SITE + "/hi")
-    m = re.fullmatch(r"(/hi)?/bhagyank/(\d)", p)
+def lang_set(p):
+    """Language versions of a page as {lang: absolute URL}, or None if the page has no translations."""
+    if p in ("", "/", "/hi", "/mr"):
+        return {"en": SITE + "/", "hi": SITE + "/hi", "mr": SITE + "/mr"}
+    m = re.fullmatch(r"(?:/(?:hi|mr))?/bhagyank/(\d)", p)
     if m:
-        return (f"{SITE}/bhagyank/{m.group(2)}", f"{SITE}/hi/bhagyank/{m.group(2)}")
+        n = m.group(1)
+        return {"en": f"{SITE}/bhagyank/{n}", "hi": f"{SITE}/hi/bhagyank/{n}", "mr": f"{SITE}/mr/bhagyank/{n}"}
     return None
 
 
@@ -1256,6 +1452,7 @@ def finalize_dates():
         m = _dt.date.fromisoformat(rec["modified"])
         html = (html.replace("__MODIFIED_EN__", f"{m.day} {MONTHS_EN[m.month - 1]} {m.year}")
                     .replace("__MODIFIED_HI__", f"{m.day} {MONTHS_HI[m.month - 1]} {m.year}")
+                    .replace("__MODIFIED_MR__", f"{m.day} {MONTHS_MR[m.month - 1]} {m.year}")
                     .replace("__MODIFIED__", rec["modified"]).replace("__PUBLISHED__", rec["published"]))
         f.write_text(html)
     live = {url_of(f) for f in PUB.rglob("*.html")}
@@ -1278,11 +1475,11 @@ def sitemap(mf):
         loc = SITE + "/" if u == "/" else SITE + u
         out.append("  <url>")
         out.append(f"    <loc>{loc}</loc>")
-        pair = lang_pair("" if u == "/" else u)
-        if pair:
-            out.append(f'    <xhtml:link rel="alternate" hreflang="en" href="{pair[0]}"/>')
-            out.append(f'    <xhtml:link rel="alternate" hreflang="hi" href="{pair[1]}"/>')
-            out.append(f'    <xhtml:link rel="alternate" hreflang="x-default" href="{pair[0]}"/>')
+        ls = lang_set(u)
+        if ls:
+            for k, v in ls.items():
+                out.append(f'    <xhtml:link rel="alternate" hreflang="{k}" href="{v}"/>')
+            out.append(f'    <xhtml:link rel="alternate" hreflang="x-default" href="{ls["en"]}"/>')
         out.append(f"    <lastmod>{mf[u]['modified']}</lastmod>")
         out.append(f"    <changefreq>{cf}</changefreq>")
         out.append(f"    <priority>{pr}</priority>")
@@ -1293,17 +1490,18 @@ def sitemap(mf):
 
 def html_sitemap():
     def lst(items):
-        return "<ul>" + "".join(f'<li><a class="link" href="{h}"{" lang=hi" if lang else ""}>{e(t)}</a></li>' for h, t, lang in items) + "</ul>"
-    tools = [("/", "Bhagyank Calculator", 0), ("/hi", "भाग्यांक कैलकुलेटर (हिंदी)", 1),
+        return "<ul>" + "".join(f'<li><a class="link" href="{h}"{(" lang=" + (lang if isinstance(lang, str) else "hi")) if lang else ""}>{e(t)}</a></li>' for h, t, lang in items) + "</ul>"
+    tools = [("/", "Bhagyank Calculator", 0), ("/hi", "भाग्यांक कैलकुलेटर (हिंदी)", 1), ("/mr", "भाग्यांक कॅल्क्युलेटर (मराठी)", "mr"),
              ("/moolank-calculator", "Moolank (Mulank) Calculator", 0), ("/namank-calculator", "Namank Calculator", 0),
              ("/lo-shu-grid-calculator", "Lo Shu Grid Calculator", 0), ("/gemstone-recommendation", "Gemstone Recommendation", 0)]
     en = [(f"/bhagyank/{n}", f"Bhagyank {n} meaning - {EN[str(n)]['title']}", 0) for n in range(1, 10)]
     hi = [(f"/hi/bhagyank/{n}", f"भाग्यांक {n} का अर्थ - {HI[str(n)]['title']}", 1) for n in range(1, 10)]
-    blog = [("/blog", "All blog posts", 0)] + [(post_url(p), p["h1"], 1 if p["lang"] == "hi" else 0) for p in POSTS]
+    mr = [(f"/mr/bhagyank/{n}", f"भाग्यांक {n} चा अर्थ - {MR[str(n)]['title']}", "mr") for n in range(1, 10)]
+    blog = [("/blog", "All blog posts", 0)] + [(post_url(p), p["h1"], 0 if p["lang"] == "en" else p["lang"]) for p in POSTS]
     site = [("/about", "About Us", 0), ("/author/ananya-sharma", "Author - Ananya Sharma", 0), ("/contact", "Contact Us", 0),
             ("/privacy-policy", "Privacy Policy", 0), ("/terms-and-conditions", "Terms & Conditions", 0)]
     inner = (f"<h2>Calculators</h2>{lst(tools)}<h2>Bhagyank meanings (English)</h2>{lst(en)}"
-             f"<h2 lang=\"hi\">भाग्यांक के अर्थ (हिंदी)</h2>{lst(hi)}<h2>Blog</h2>{lst(blog)}<h2>About this site</h2>{lst(site)}"
+             f"<h2 lang=\"hi\">भाग्यांक के अर्थ (हिंदी)</h2>{lst(hi)}<h2 lang=\"mr\">भाग्यांकाचे अर्थ (मराठी)</h2>{lst(mr)}<h2>Blog</h2>{lst(blog)}<h2>About this site</h2>{lst(site)}"
              f'<p class="small">For search engines: <a href="/sitemap.xml">XML sitemap</a>.</p>')
     return shell("/sitemap", "Sitemap - All Pages | Bhagyank Calculator", "Sitemap",
                  "Every page on Bhagyank Calculator in one place: calculators, Bhagyank meanings in English and Hindi, and blog guides.",
@@ -1318,13 +1516,16 @@ def main():
         (PUB / name).write_text(fn())
     (PUB / "bhagyank").mkdir(exist_ok=True)
     (PUB / "hi" / "bhagyank").mkdir(parents=True, exist_ok=True)
+    (PUB / "mr" / "bhagyank").mkdir(parents=True, exist_ok=True)
     for n in range(1, 10):
         (PUB / "bhagyank" / f"{n}.html").write_text(number_page(n))
         (PUB / "hi" / "bhagyank" / f"{n}.html").write_text(number_page_hi(n))
+        (PUB / "mr" / "bhagyank" / f"{n}.html").write_text(number_page_mr(n))
     (PUB / "author").mkdir(exist_ok=True)
     (PUB / "author" / "ananya-sharma.html").write_text(author_page())
     (PUB / "blog").mkdir(exist_ok=True)
     (PUB / "hi" / "blog").mkdir(parents=True, exist_ok=True)
+    (PUB / "mr" / "blog").mkdir(parents=True, exist_ok=True)
     (PUB / "blog.html").write_text(blog_index())
     (PUB / "sitemap.html").write_text(html_sitemap())
     for p in POSTS:
@@ -1340,7 +1541,7 @@ def main():
     (PUB / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
     # data for the calculators
     js = (HERE / "app.js").read_text().replace(
-        "/*__DATA__*/", "const DATA = " + json.dumps({"en": EN, "hi": HI}, ensure_ascii=False) + ";")
+        "/*__DATA__*/", "const DATA = " + json.dumps({"en": EN, "hi": HI, "mr": MR}, ensure_ascii=False) + ";")
     (PUB / "assets" / "app.js").write_text(js)
     shutil.copy(HERE / "style.css", PUB / "assets" / "style.css")
     for f in ["og-image.png", "ananya-sharma.jpg"]:

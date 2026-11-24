@@ -94,7 +94,7 @@ for pf in sorted((ROOT / "tools" / "posts").glob("*.json")):
         errors.append(f"{pf.name}: needs 3-5 FAQs")
     if len(p.get("title", "")) > 70:
         errors.append(f"{pf.name}: title longer than 70 characters")
-    out = PUB / (("hi/blog/" if p.get("lang") == "hi" else "blog/") + p.get("slug", "") + ".html")
+    out = PUB / (("blog/" if p.get("lang") == "en" else f"{p.get('lang')}/blog/") + p.get("slug", "") + ".html")
     if not out.exists():
         errors.append(f"{pf.name}: page not built at {out.relative_to(ROOT)} - run tools/build.py")
 

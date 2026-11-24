@@ -11,20 +11,25 @@ If a topic would duplicate an existing page, adjust the angle or move it down an
 ## Queue
 - [ ] मूलांक और भाग्यांक में अंतर - "mulank aur bhagyank me antar" (HI) - tool: /hi, /moolank-calculator
 - [ ] Lucky number by date of birth: how to find yours (EN) - tool: /
+- [ ] भाग्यांक कसा काढायचा - सोपी पद्धत आणि उदाहरणे - "bhagyank kasa kadhaycha" (MR) - tool: /mr
 - [ ] भाग्यांक 8 वालों का करियर, पैसा और जीवन - "bhagyank 8" (HI) - tool: /hi, /hi/bhagyank/8
 - [ ] Bhagyank vs life path number: same or different? (EN) - tool: /
 - [ ] लो शू ग्रिड में मिसिंग नंबर और उनके उपाय - "lo shu grid missing numbers" (HI) - tool: /lo-shu-grid-calculator
 - [ ] How to calculate Bhagyank by hand (with 5 worked examples) (EN) - tool: /
 - [ ] जन्मतिथि से शुभ रंग कैसे जानें - "lucky color by date of birth" (HI) - tool: /hi
 - [ ] Lo Shu Grid planes explained: mental, emotional, practical and more (EN) - tool: /lo-shu-grid-calculator
+- [ ] मूलांक आणि भाग्यांक यातील फरक (MR) - tool: /mr, /moolank-calculator
 - [ ] भाग्यांक 1 से 9 के लिए सही करियर - "bhagyank career" (HI) - tool: /hi
 - [ ] Best Bhagyank for business and money (EN) - tool: /
+- [ ] लग्नासाठी मूलांक-भाग्यांक जुळवणी (MR) - tool: /mr
 - [ ] नाम का अंक (नामांक) कैसे निकालें - "namank kaise nikale" (HI) - tool: /namank-calculator
 - [ ] Bhagyank and marriage: which numbers match? (EN) - tool: /
+- [ ] भाग्यांक 8 आणि शनी: करिअर आणि आयुष्य (MR) - tool: /mr, /mr/bhagyank/8
 - [ ] भाग्यांक 6 और शादी - "bhagyank 6 marriage" (HI) - tool: /hi, /hi/bhagyank/6
 - [ ] What is a master number (11, 22, 33) and why Vedic numerology reduces it (EN) - tool: /
 - [ ] लो शू ग्रिड में गोल्डन योग और सिल्वर योग (HI) - tool: /lo-shu-grid-calculator
 - [ ] Lucky days by Bhagyank: plan important work on these days (EN) - tool: /
+- [ ] जन्मतारखेवरून शुभ रंग कसा ओळखायचा (MR) - tool: /mr
 - [ ] मूलांक 1 से 9: स्वभाव एक नज़र में - "mulank 1 to 9" (HI) - tool: /moolank-calculator
 - [ ] Repeated numbers in Lo Shu Grid (e.g. 11, 222): what they mean (EN) - tool: /lo-shu-grid-calculator
 - [ ] भाग्यांक 9 वाले लोग कैसे होते हैं (HI) - tool: /hi, /hi/bhagyank/9

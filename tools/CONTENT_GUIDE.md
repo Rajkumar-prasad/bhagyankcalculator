@@ -30,16 +30,18 @@ Follow this guide exactly. Owner: Raj. Author shown on posts: Ananya Sharma (अ
   "knowledge is power", "march to the beat of their own drum", "jack of all trades", "home is where the heart is",
   "still waters run deep", "slow and steady wins the race", "short fuse", "smooth seas never made a skilled
   sailor", "don't make a mountain out of a molehill", "ताली दोनों हाथों से बजती है", "देर आए दुरुस्त आए",
-  "लीक से हटकर", "अकेला चना भाड़ नहीं फोड़ सकता", "जैसी संगत वैसी रंगत", "बाल की खाल", "ईंट का जवाब पत्थर से".
+  "लीक से हटकर", "अकेला चना भाड़ नहीं फोड़ सकता", "जैसी संगत वैसी रंगत", "बाल की खाल", "ईंट का जवाब पत्थर से", "एकीचे बळ", "संगत तशी रंगत", "ज्ञान वाटल्याने वाढते", "चाकोरीबाहेर", "हरहुन्नरी",
+  "मन जिंकणे", "कीस पाडणे", "धीर धरी रे धीरापोटी", "रागाच्या भरात बोललेले शब्द".
 - **Exactly 1 statistic** per post that shows authority, linked on a 3-4 word anchor (e.g. "Pew Research Center
   survey", "Pew Research के सर्वे") to the page that proves it. Verify the number on the source page yourself
   before using it. Prefer a different verified statistic from the previous posts when one fits; the Pew figures
   already verified are: India 2021 - 29,999 adults surveyed, 49% of Hindus believe in astrology
-  (`{{PEW_IN_URL}}`); US 2024 - 3 in 10 adults consult astrology, tarot cards or fortune tellers (`{{PEW_US_URL}}`).
+  (`{{PEW_IN_URL}}`, Marathi anchor "Pew Research च्या सर्वेक्षणात"); US 2024 - 3 in 10 adults consult astrology, tarot cards or fortune tellers (`{{PEW_US_URL}}`).
 - Use regular hyphens " - ", never em dashes.
 - Length: 1,000-1,500 words. Language: as listed in TOPICS.md (Hindi posts in simple Hindi; English
   words like "numerology" are fine where people actually use them).
-- Hindi posts: `lang` "hi", slug in romanised Hindi (e.g. `mulank-aur-bhagyank-me-antar`).
+- Hindi posts: `lang` "hi", slug in romanised Hindi (e.g. `mulank-aur-bhagyank-me-antar`). Marathi posts: `lang` "mr"
+  (simple, natural Marathi; e.g. `bhagyank-kasa-kadhaycha`). Live URLs: EN `/blog/<slug>`, HI `/hi/blog/<slug>`, MR `/mr/blog/<slug>`.
 
 ## 3. Post file format
 Create `tools/posts/YYYY-MM-DD-<slug>.json` (date = today, IST):
@@ -66,17 +68,18 @@ Do not add the FAQ, author box, disclaimer or related list to the body - the tem
 
 ## 4. Site map (link targets)
 Tool pages (the money pages - every post must link to its target tool at least twice, with varied anchors):
-- `/` Bhagyank Calculator (EN) · `/hi` भाग्यांक कैलकुलेटर (HI) · calculator anchor: `/#calculator`, `/hi#calculator`
+- `/` Bhagyank Calculator (EN) · `/hi` भाग्यांक कैलकुलेटर (HI) · `/mr` भाग्यांक कॅल्क्युलेटर (MR) · calculator anchors: `/#calculator`, `/hi#calculator`, `/mr#calculator`
 - `/moolank-calculator` Moolank (Mulank) Calculator · `/namank-calculator` Namank (name number) Calculator
 - `/lo-shu-grid-calculator` Lo Shu Grid Calculator · `/gemstone-recommendation` gemstone guide
-Meaning pages: `/bhagyank/1` ... `/bhagyank/9` (EN), `/hi/bhagyank/1` ... `/hi/bhagyank/9` (HI)
+Meaning pages: `/bhagyank/1` ... `/bhagyank/9` (EN), `/hi/bhagyank/1` ... `/hi/bhagyank/9` (HI), `/mr/bhagyank/1` ... `/mr/bhagyank/9` (MR)
 Author: `/author/ananya-sharma` · Blog index: `/blog` · existing posts: see `tools/posts/`.
 
 ## 5. Internal linking (every post)
 - 4-8 internal links in the body: 2+ to the target tool page, 1-3 to the matching `/bhagyank/N` or
   `/hi/bhagyank/N` pages, 1-2 to related posts. Use descriptive anchors (3-6 words), vary them, never
   "click here", and don't repeat the exact same anchor twice in one post.
-- Hindi posts link to Hindi pages where they exist; English posts to English pages.
+- Hindi posts link to Hindi pages, Marathi posts to Marathi pages (`/mr`, `/mr/bhagyank/N`), English posts to English pages.
+- Marathi posts: `lang` "mr", slug in romanised Marathi; they are published at `/mr/blog/<slug>`.
 - After writing, add a link **to the new post** from 1-2 older related posts: add it to their `related` list and,
   where it reads naturally, one in-text link in a body paragraph.
 - `related` in the new post: 3-5 entries (tool page first).
