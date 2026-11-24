@@ -40,3 +40,8 @@ Cloudflare serves `/hi` from `hi.html` automatically (and redirects `/hi.html` t
 npx wrangler dev
 ```
 Then open http://localhost:8787
+
+## Generator and blog
+- `tools/build.py` regenerates every page in `public/` (run `python3 tools/build.py && cp tools/style.css public/assets/style.css`).
+- Blog posts are JSON files in `tools/posts/`. Writing rules, link map and publishing steps: `tools/CONTENT_GUIDE.md`.
+- Topic queue for the daily post: `tools/TOPICS.md`. Pre-publish checks: `python3 tools/check.py`.

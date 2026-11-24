@@ -1,0 +1,604 @@
+{
+ "en": {
+  "1": {
+   "number": 1,
+   "planet": "Sun",
+   "planetHindi": "Surya",
+   "title": "The Leader",
+   "keywords": [
+    "Leadership",
+    "Independence",
+    "Ambition"
+   ],
+   "summary": "Bhagyank 1 is ruled by the Sun and belongs to natural-born leaders. Your destiny is to pioneer, initiate and stand out. You are independent, confident and driven to create your own path rather than follow others.",
+   "strengths": [
+    "Strong willpower",
+    "Original thinking",
+    "Confidence and authority",
+    "Determination"
+   ],
+   "challenges": [
+    "Can be stubborn or egoistic",
+    "Dislikes taking orders",
+    "May become dominating"
+   ],
+   "career": "Business ownership, administration, government, leadership roles and entrepreneurship.",
+   "luckyColors": [
+    "Golden",
+    "Yellow",
+    "Orange"
+   ],
+   "luckyDays": [
+    "Sunday",
+    "Monday"
+   ]
+  },
+  "2": {
+   "number": 2,
+   "planet": "Moon",
+   "planetHindi": "Chandra",
+   "title": "The Diplomat",
+   "keywords": [
+    "Sensitivity",
+    "Harmony",
+    "Intuition"
+   ],
+   "summary": "Bhagyank 2 is ruled by the Moon and reflects emotion, imagination and cooperation. Your destiny is tied to relationships, peace-making and creativity. You are intuitive, gentle and deeply empathetic.",
+   "strengths": [
+    "Great intuition",
+    "Diplomatic and caring",
+    "Creative and artistic",
+    "Team-oriented"
+   ],
+   "challenges": [
+    "Over-sensitive",
+    "Indecisive at times",
+    "Mood swings"
+   ],
+   "career": "Counselling, arts, hospitality, healthcare, teaching and public relations.",
+   "luckyColors": [
+    "White",
+    "Cream",
+    "Silver"
+   ],
+   "luckyDays": [
+    "Monday",
+    "Friday"
+   ]
+  },
+  "3": {
+   "number": 3,
+   "planet": "Jupiter",
+   "planetHindi": "Guru (Brihaspati)",
+   "title": "The Sage",
+   "keywords": [
+    "Wisdom",
+    "Optimism",
+    "Expression"
+   ],
+   "summary": "Bhagyank 3 is ruled by Jupiter and blesses you with knowledge, discipline and self-expression. Your destiny is linked to teaching, guidance and growth. You are optimistic, wise and naturally respected.",
+   "strengths": [
+    "Knowledge and wisdom",
+    "Discipline",
+    "Good communication",
+    "Optimistic outlook"
+   ],
+   "challenges": [
+    "Can be overly critical",
+    "Tendency to preach",
+    "Impatience"
+   ],
+   "career": "Teaching, law, finance, writing, advisory roles and spirituality.",
+   "luckyColors": [
+    "Yellow",
+    "Golden",
+    "Saffron"
+   ],
+   "luckyDays": [
+    "Thursday",
+    "Tuesday"
+   ]
+  },
+  "4": {
+   "number": 4,
+   "planet": "Rahu",
+   "planetHindi": "Rahu",
+   "title": "The Rebel",
+   "keywords": [
+    "Discipline",
+    "Uniqueness",
+    "Change"
+   ],
+   "summary": "Bhagyank 4 is ruled by Rahu and gives you an unconventional, hardworking and revolutionary destiny. You think differently, question norms and often bring sudden change to the world around you.",
+   "strengths": [
+    "Hardworking",
+    "Practical and systematic",
+    "Unique perspective",
+    "Reliable"
+   ],
+   "challenges": [
+    "Rebellious streak",
+    "Feels misunderstood",
+    "Prone to sudden ups and downs"
+   ],
+   "career": "Technology, engineering, activism, research and unconventional professions.",
+   "luckyColors": [
+    "Grey",
+    "Blue",
+    "Khaki"
+   ],
+   "luckyDays": [
+    "Saturday",
+    "Sunday"
+   ]
+  },
+  "5": {
+   "number": 5,
+   "planet": "Mercury",
+   "planetHindi": "Budh",
+   "title": "The Communicator",
+   "keywords": [
+    "Freedom",
+    "Intelligence",
+    "Versatility"
+   ],
+   "summary": "Bhagyank 5 is ruled by Mercury and represents intelligence, adaptability and freedom. Your destiny is dynamic and versatile. You love travel, communication and change, and you learn quickly.",
+   "strengths": [
+    "Sharp intellect",
+    "Excellent communication",
+    "Adaptable",
+    "Business-minded"
+   ],
+   "challenges": [
+    "Restlessness",
+    "Overthinking",
+    "Difficulty committing"
+   ],
+   "career": "Sales, marketing, media, trading, writing and any communication-driven field.",
+   "luckyColors": [
+    "Green",
+    "Light Blue"
+   ],
+   "luckyDays": [
+    "Wednesday",
+    "Friday"
+   ]
+  },
+  "6": {
+   "number": 6,
+   "planet": "Venus",
+   "planetHindi": "Shukra",
+   "title": "The Nurturer",
+   "keywords": [
+    "Love",
+    "Beauty",
+    "Responsibility"
+   ],
+   "summary": "Bhagyank 6 is ruled by Venus and is all about love, luxury, beauty and harmony. Your destiny involves caring for others, creating beauty and enjoying the comforts of life. You are charming and family-oriented.",
+   "strengths": [
+    "Loving and caring",
+    "Artistic taste",
+    "Responsible",
+    "Attracts comfort and luxury"
+   ],
+   "challenges": [
+    "Over-attachment",
+    "Prone to indulgence",
+    "Worries about loved ones"
+   ],
+   "career": "Arts, fashion, design, hospitality, entertainment and beauty industries.",
+   "luckyColors": [
+    "White",
+    "Pink",
+    "Blue"
+   ],
+   "luckyDays": [
+    "Friday",
+    "Wednesday"
+   ]
+  },
+  "7": {
+   "number": 7,
+   "planet": "Ketu",
+   "planetHindi": "Ketu",
+   "title": "The Seeker",
+   "keywords": [
+    "Spirituality",
+    "Intuition",
+    "Research"
+   ],
+   "summary": "Bhagyank 7 is ruled by Ketu and grants a spiritual, analytical and introspective destiny. You are a deep thinker drawn to mystery, research and the unknown. Your path often leads to wisdom and inner growth.",
+   "strengths": [
+    "Analytical mind",
+    "Spiritual depth",
+    "Independent thinker",
+    "Intuitive"
+   ],
+   "challenges": [
+    "Detached or aloof",
+    "Overthinking",
+    "Difficulty trusting"
+   ],
+   "career": "Research, spirituality, science, psychology, occult and analytical fields.",
+   "luckyColors": [
+    "Light Grey",
+    "Green",
+    "Cream"
+   ],
+   "luckyDays": [
+    "Sunday",
+    "Monday"
+   ]
+  },
+  "8": {
+   "number": 8,
+   "planet": "Saturn",
+   "planetHindi": "Shani",
+   "title": "The Achiever",
+   "keywords": [
+    "Power",
+    "Discipline",
+    "Karma"
+   ],
+   "summary": "Bhagyank 8 is ruled by Saturn and represents karma, discipline, justice and material success. Your destiny is built through patience and hard work. Results may come slowly but are lasting and powerful.",
+   "strengths": [
+    "Ambitious",
+    "Disciplined",
+    "Strong sense of justice",
+    "Great endurance"
+   ],
+   "challenges": [
+    "Struggle and delays",
+    "Can be rigid",
+    "Emotionally reserved"
+   ],
+   "career": "Business, law, real estate, mining, administration and long-term ventures.",
+   "luckyColors": [
+    "Black",
+    "Dark Blue",
+    "Grey"
+   ],
+   "luckyDays": [
+    "Saturday",
+    "Friday"
+   ]
+  },
+  "9": {
+   "number": 9,
+   "planet": "Mars",
+   "planetHindi": "Mangal",
+   "title": "The Warrior",
+   "keywords": [
+    "Courage",
+    "Energy",
+    "Compassion"
+   ],
+   "summary": "Bhagyank 9 is ruled by Mars and blesses you with courage, energy and a humanitarian heart. Your destiny is one of action, protection and service. You are brave, determined and fight for what is right.",
+   "strengths": [
+    "Courageous",
+    "High energy",
+    "Compassionate",
+    "Determined fighter"
+   ],
+   "challenges": [
+    "Quick temper",
+    "Impulsiveness",
+    "Impatience"
+   ],
+   "career": "Defence, sports, surgery, engineering, social work and leadership roles.",
+   "luckyColors": [
+    "Red",
+    "Crimson",
+    "Pink"
+   ],
+   "luckyDays": [
+    "Tuesday",
+    "Thursday"
+   ]
+  }
+ },
+ "hi": {
+  "1": {
+   "number": 1,
+   "planet": "सूर्य",
+   "title": "नेतृत्वकर्ता",
+   "summary": "भाग्यांक 1 का स्वामी सूर्य है। ऐसे लोग जन्मजात लीडर होते हैं। इनका भाग्य नई शुरुआत करने, आगे बढ़कर नेतृत्व करने और अपनी अलग पहचान बनाने से जुड़ा होता है। ये आत्मनिर्भर, आत्मविश्वासी और महत्वाकांक्षी होते हैं।",
+   "strengths": [
+    "दृढ़ इच्छाशक्ति",
+    "मौलिक सोच",
+    "आत्मविश्वास और अधिकार",
+    "लक्ष्य के प्रति संकल्प"
+   ],
+   "challenges": [
+    "ज़िद्दी या अहंकारी हो सकते हैं",
+    "आदेश मानना पसंद नहीं",
+    "हावी होने की प्रवृत्ति"
+   ],
+   "career": "अपना व्यवसाय, प्रशासन, सरकारी सेवा, प्रबंधन और उद्यमिता।",
+   "luckyColors": [
+    "सुनहरा",
+    "पीला",
+    "नारंगी"
+   ],
+   "luckyDays": [
+    "रविवार",
+    "सोमवार"
+   ]
+  },
+  "2": {
+   "number": 2,
+   "planet": "चंद्र",
+   "title": "कूटनीतिज्ञ",
+   "summary": "भाग्यांक 2 का स्वामी चंद्रमा है। यह भावना, कल्पना और सहयोग का अंक है। इनका भाग्य रिश्तों, शांति स्थापित करने और रचनात्मक कार्यों से जुड़ा होता है। ये संवेदनशील, सहज ज्ञान वाले और दूसरों का दर्द समझने वाले होते हैं।",
+   "strengths": [
+    "तेज़ अंतर्ज्ञान",
+    "कूटनीतिक और देखभाल करने वाले",
+    "रचनात्मक और कलात्मक",
+    "टीम में काम करने वाले"
+   ],
+   "challenges": [
+    "ज़रूरत से ज़्यादा भावुक",
+    "कभी-कभी निर्णय लेने में कठिनाई",
+    "मूड में उतार-चढ़ाव"
+   ],
+   "career": "काउंसलिंग, कला, होटल व्यवसाय, स्वास्थ्य सेवा, शिक्षण और जनसंपर्क।",
+   "luckyColors": [
+    "सफ़ेद",
+    "क्रीम",
+    "चांदी"
+   ],
+   "luckyDays": [
+    "सोमवार",
+    "शुक्रवार"
+   ]
+  },
+  "3": {
+   "number": 3,
+   "planet": "गुरु (बृहस्पति)",
+   "title": "ज्ञानी",
+   "summary": "भाग्यांक 3 का स्वामी गुरु (बृहस्पति) है। यह अंक ज्ञान, अनुशासन और अभिव्यक्ति का आशीर्वाद देता है। इनका भाग्य शिक्षा, मार्गदर्शन और विकास से जुड़ा होता है। ये आशावादी, बुद्धिमान और सम्मानित होते हैं।",
+   "strengths": [
+    "ज्ञान और विवेक",
+    "अनुशासन",
+    "अच्छी वाणी",
+    "सकारात्मक दृष्टिकोण"
+   ],
+   "challenges": [
+    "ज़्यादा आलोचना करना",
+    "उपदेश देने की आदत",
+    "अधीरता"
+   ],
+   "career": "शिक्षण, कानून, वित्त, लेखन, सलाहकार और आध्यात्मिक क्षेत्र।",
+   "luckyColors": [
+    "पीला",
+    "सुनहरा",
+    "केसरिया"
+   ],
+   "luckyDays": [
+    "गुरुवार",
+    "मंगलवार"
+   ]
+  },
+  "4": {
+   "number": 4,
+   "planet": "राहु",
+   "title": "क्रांतिकारी",
+   "summary": "भाग्यांक 4 का स्वामी राहु है। ऐसे लोगों का भाग्य अलग हटकर, मेहनत भरा और बदलाव लाने वाला होता है। ये परंपराओं पर सवाल उठाते हैं, अलग तरह से सोचते हैं और जीवन में अचानक बदलाव देखते हैं।",
+   "strengths": [
+    "कड़ी मेहनत",
+    "व्यावहारिक और व्यवस्थित",
+    "अनोखा दृष्टिकोण",
+    "भरोसेमंद"
+   ],
+   "challenges": [
+    "विद्रोही स्वभाव",
+    "लोग इन्हें गलत समझते हैं",
+    "अचानक उतार-चढ़ाव"
+   ],
+   "career": "टेक्नोलॉजी, इंजीनियरिंग, रिसर्च, सामाजिक आंदोलन और अलग तरह के पेशे।",
+   "luckyColors": [
+    "स्लेटी",
+    "नीला",
+    "खाकी"
+   ],
+   "luckyDays": [
+    "शनिवार",
+    "रविवार"
+   ]
+  },
+  "5": {
+   "number": 5,
+   "planet": "बुध",
+   "title": "संवादकर्ता",
+   "summary": "भाग्यांक 5 का स्वामी बुध है। यह बुद्धि, लचीलेपन और स्वतंत्रता का अंक है। इनका भाग्य गतिशील और बहुमुखी होता है। इन्हें यात्रा, बातचीत और बदलाव पसंद है, और ये बहुत जल्दी सीखते हैं।",
+   "strengths": [
+    "तेज़ बुद्धि",
+    "बेहतरीन संवाद कौशल",
+    "हर स्थिति में ढल जाना",
+    "व्यापारिक समझ"
+   ],
+   "challenges": [
+    "बेचैनी",
+    "ज़रूरत से ज़्यादा सोचना",
+    "प्रतिबद्धता में कठिनाई"
+   ],
+   "career": "सेल्स, मार्केटिंग, मीडिया, ट्रेडिंग, लेखन और संवाद से जुड़े क्षेत्र।",
+   "luckyColors": [
+    "हरा",
+    "हल्का नीला"
+   ],
+   "luckyDays": [
+    "बुधवार",
+    "शुक्रवार"
+   ]
+  },
+  "6": {
+   "number": 6,
+   "planet": "शुक्र",
+   "title": "पालनकर्ता",
+   "summary": "भाग्यांक 6 का स्वामी शुक्र है। यह प्रेम, सुंदरता, सुख-सुविधा और सामंजस्य का अंक है। इनका भाग्य दूसरों की देखभाल करने, सुंदर चीज़ें बनाने और जीवन के सुखों का आनंद लेने से जुड़ा होता है। ये आकर्षक और परिवार-प्रेमी होते हैं।",
+   "strengths": [
+    "प्रेमपूर्ण और देखभाल करने वाले",
+    "कलात्मक रुचि",
+    "ज़िम्मेदार",
+    "सुख-सुविधाओं को आकर्षित करते हैं"
+   ],
+   "challenges": [
+    "ज़्यादा लगाव",
+    "भोग-विलास की ओर झुकाव",
+    "प्रियजनों की चिंता"
+   ],
+   "career": "कला, फ़ैशन, डिज़ाइन, होटल व्यवसाय, मनोरंजन और ब्यूटी इंडस्ट्री।",
+   "luckyColors": [
+    "सफ़ेद",
+    "गुलाबी",
+    "नीला"
+   ],
+   "luckyDays": [
+    "शुक्रवार",
+    "बुधवार"
+   ]
+  },
+  "7": {
+   "number": 7,
+   "planet": "केतु",
+   "title": "साधक",
+   "summary": "भाग्यांक 7 का स्वामी केतु है। यह आध्यात्मिक, विश्लेषणात्मक और आत्मचिंतन वाला भाग्य देता है। ये गहराई से सोचने वाले होते हैं और रहस्य, शोध व अज्ञात चीज़ों की ओर आकर्षित होते हैं। इनका मार्ग ज्ञान और आंतरिक विकास की ओर जाता है।",
+   "strengths": [
+    "विश्लेषण करने वाला दिमाग",
+    "आध्यात्मिक गहराई",
+    "स्वतंत्र विचारक",
+    "अंतर्ज्ञानी"
+   ],
+   "challenges": [
+    "दूसरों से दूरी बनाना",
+    "ज़्यादा सोचना",
+    "भरोसा करने में कठिनाई"
+   ],
+   "career": "रिसर्च, अध्यात्म, विज्ञान, मनोविज्ञान, गूढ़ विद्या और विश्लेषण से जुड़े क्षेत्र।",
+   "luckyColors": [
+    "हल्का स्लेटी",
+    "हरा",
+    "क्रीम"
+   ],
+   "luckyDays": [
+    "रविवार",
+    "सोमवार"
+   ]
+  },
+  "8": {
+   "number": 8,
+   "planet": "शनि",
+   "title": "उपलब्धि पाने वाला",
+   "summary": "भाग्यांक 8 का स्वामी शनि है। यह कर्म, अनुशासन, न्याय और भौतिक सफलता का अंक है। इनका भाग्य धैर्य और कड़ी मेहनत से बनता है। सफलता देर से मिल सकती है, लेकिन जो मिलती है वह स्थायी और मज़बूत होती है।",
+   "strengths": [
+    "महत्वाकांक्षी",
+    "अनुशासित",
+    "न्यायप्रिय",
+    "बहुत सहनशील"
+   ],
+   "challenges": [
+    "संघर्ष और देरी",
+    "कठोर हो सकते हैं",
+    "भावनाएँ ज़ाहिर नहीं करते"
+   ],
+   "career": "व्यवसाय, कानून, रियल एस्टेट, खनन, प्रशासन और लंबे समय के प्रोजेक्ट।",
+   "luckyColors": [
+    "काला",
+    "गहरा नीला",
+    "स्लेटी"
+   ],
+   "luckyDays": [
+    "शनिवार",
+    "शुक्रवार"
+   ]
+  },
+  "9": {
+   "number": 9,
+   "planet": "मंगल",
+   "title": "योद्धा",
+   "summary": "भाग्यांक 9 का स्वामी मंगल है। यह साहस, ऊर्जा और मानवता की सेवा का अंक है। इनका भाग्य कर्म, रक्षा और सेवा से जुड़ा होता है। ये बहादुर, दृढ़ निश्चयी होते हैं और सही बात के लिए लड़ते हैं।",
+   "strengths": [
+    "साहसी",
+    "भरपूर ऊर्जा",
+    "दयालु",
+    "हार न मानने वाले"
+   ],
+   "challenges": [
+    "जल्दी गुस्सा",
+    "जल्दबाज़ी",
+    "अधीरता"
+   ],
+   "career": "सेना और रक्षा, खेल, सर्जरी, इंजीनियरिंग, समाज सेवा और नेतृत्व।",
+   "luckyColors": [
+    "लाल",
+    "गहरा लाल",
+    "गुलाबी"
+   ],
+   "luckyDays": [
+    "मंगलवार",
+    "गुरुवार"
+   ]
+  }
+ },
+ "faq_en": [
+  [
+   "What is Bhagyank?",
+   "Bhagyank, also called the Destiny Number or Bhagya Ank, is a core number in Vedic numerology derived from your complete date of birth. It represents your life path, purpose and the overall direction your life is destined to take."
+  ],
+  [
+   "How is Bhagyank calculated from date of birth?",
+   "To find your Bhagyank, add every single digit of your full date of birth (day, month and year) together, then keep reducing the sum until you get a single digit between 1 and 9. For example, 15-08-1990 gives 1+5+0+8+1+9+9+0 = 33, and 3+3 = 6, so the Bhagyank is 6."
+  ],
+  [
+   "What is the difference between Mulank and Bhagyank?",
+   "Mulank (Radical or Birth Number) is calculated only from your day of birth and reflects your core personality and daily nature. Bhagyank (Destiny Number) is calculated from your entire date of birth and reveals your life path and karmic purpose. Mulank shows who you are; Bhagyank shows where your life is heading."
+  ],
+  [
+   "Which Bhagyank is the luckiest?",
+   "No single Bhagyank is universally \"lucky\" — every destiny number has its own strengths and challenges. What matters is how well your Bhagyank harmonises with your Mulank, your name numerology and your daily choices. Numbers 1, 3, 5, 6 and 9 are often considered fortunate for material and social success."
+  ],
+  [
+   "Can Bhagyank change over time?",
+   "No. Your Bhagyank is fixed because it is based on your date of birth, which never changes. However, you can work with numerology remedies, name corrections and lucky colors/days to make the most of your destiny number."
+  ],
+  [
+   "Does the Bhagyank Calculator keep master numbers 11, 22 and 33?",
+   "No. In Vedic (Indian) numerology the Bhagyank is always reduced to a single digit from 1 to 9, because each digit is linked to one of the nine planets (Navagraha). So a total of 11 becomes 2, 22 becomes 4 and 33 becomes 6. Some Western (Pythagorean) life path calculators keep 11, 22 and 33 as master numbers, which is why another calculator may show a different result for the same date of birth."
+  ],
+  [
+   "Is this Bhagyank Calculator free to use?",
+   "Yes. Our Bhagyank Calculator is completely free, requires no sign-up, and gives you an instant result along with your ruling planet, personality traits, lucky colors and lucky days."
+  ]
+ ],
+ "faq_hi": [
+  [
+   "भाग्यांक क्या है?",
+   "भाग्यांक को डेस्टिनी नंबर या भाग्य अंक भी कहा जाता है। यह वैदिक अंक ज्योतिष का एक मुख्य अंक है जो आपकी पूरी जन्मतिथि से निकाला जाता है। यह आपके जीवन की दिशा, उद्देश्य और भाग्य के बारे में बताता है।"
+  ],
+  [
+   "भाग्यांक कैसे निकालें?",
+   "अपनी पूरी जन्मतिथि (दिन, महीना और वर्ष) के सभी अंकों को जोड़ें। जब तक योग 1 से 9 के बीच एक अंक न बन जाए, तब तक उसके अंकों को फिर से जोड़ते रहें। उदाहरण: 15-08-1990 के लिए 1+5+0+8+1+9+9+0 = 33 और 3+3 = 6, यानी भाग्यांक 6 है।"
+  ],
+  [
+   "मूलांक और भाग्यांक में क्या अंतर है?",
+   "मूलांक केवल जन्म के दिन (तारीख़) से निकलता है और आपके स्वभाव व व्यक्तित्व को दर्शाता है। भाग्यांक पूरी जन्मतिथि से निकलता है और आपके जीवन पथ व भाग्य को दर्शाता है। मूलांक बताता है कि आप कौन हैं, भाग्यांक बताता है कि आपका जीवन किस दिशा में जा रहा है।"
+  ],
+  [
+   "सबसे शुभ भाग्यांक कौन सा है?",
+   "कोई भी भाग्यांक अपने आप में अच्छा या बुरा नहीं होता। हर अंक की अपनी खूबियाँ और चुनौतियाँ होती हैं। असली बात यह है कि आपका भाग्यांक आपके मूलांक और नामांक के साथ कितना मेल खाता है। आमतौर पर 1, 3, 5, 6 और 9 को भौतिक और सामाजिक सफलता के लिए शुभ माना जाता है।"
+  ],
+  [
+   "क्या भाग्यांक कभी बदलता है?",
+   "नहीं। भाग्यांक आपकी जन्मतिथि पर आधारित है, जो कभी नहीं बदलती, इसलिए भाग्यांक भी स्थिर रहता है। हाँ, नाम सुधार, शुभ रंग और शुभ दिनों के ज़रिए आप अपने भाग्यांक की ऊर्जा का बेहतर उपयोग कर सकते हैं।"
+  ],
+  [
+   "क्या यह कैलकुलेटर 11, 22 और 33 को मास्टर नंबर मानता है?",
+   "नहीं। वैदिक अंक ज्योतिष में भाग्यांक हमेशा 1 से 9 के बीच एक अंक तक घटाया जाता है, क्योंकि हर अंक नवग्रह में से एक ग्रह से जुड़ा होता है। इसलिए 11 का भाग्यांक 2, 22 का 4 और 33 का 6 होता है। कुछ पश्चिमी (पाइथागोरियन) कैलकुलेटर 11, 22 और 33 को मास्टर नंबर मानते हैं, इसलिए उनका परिणाम अलग दिख सकता है।"
+  ],
+  [
+   "क्या यह भाग्यांक कैलकुलेटर मुफ़्त है?",
+   "हाँ। यह भाग्यांक कैलकुलेटर पूरी तरह मुफ़्त है, इसके लिए किसी साइन-अप की ज़रूरत नहीं है, और यह तुरंत आपका भाग्यांक, स्वामी ग्रह, खूबियाँ, शुभ रंग और शुभ दिन बताता है।"
+  ]
+ ]
+}
