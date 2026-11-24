@@ -10,8 +10,10 @@ public/                      <- everything the website serves
   namank-calculator.html     /namank-calculator
   gemstone-recommendation.html
   about.html, contact.html, privacy-policy.html, terms-and-conditions.html
+  bhagyank/1.html ... 9.html /bhagyank/1 ... /bhagyank/9  meaning page for each destiny number
   404.html                   shown for any missing page
-  sitemap.xml, robots.txt, _headers (cache rules)
+  sitemap.xml, robots.txt, ads.txt, _headers (cache rules)
+  favicon.ico, favicon.svg, apple-touch-icon.png, icon-192/512.png, site.webmanifest
   assets/style.css           all styles
   assets/app.js              all four calculators + the Bhagyank 1-9 data (English + Hindi)
   images/                    logo, icons, share image, reviewer photo
