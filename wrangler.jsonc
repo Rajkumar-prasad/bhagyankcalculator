@@ -1,7 +1,7 @@
 {
   "$schema": "https://unpkg.com/wrangler/config-schema.json",
   // Plain static site: every file in ./public is served as-is. No build step.
-  "name": "bhagyank-calculator-website",
+  "name": "bhagyankcalculator",
   "compatibility_date": "2026-11-01",
   "assets": {
     "directory": "./public",
