@@ -89,3 +89,6 @@ python3 tools/build.py && cp tools/style.css public/assets/style.css && python3 
 `check.py` must print `ALL CHECKS PASSED`. Fix anything it reports. Then commit (message: `Blog: <title>`) and
 push to `main`. Cloudflare deploys `main` automatically (Workers build for project `bhagyankcalculator`).
 Finally tick the topic in `tools/TOPICS.md` with the date and URL (commit that in the same commit).
+The build records each page's real last-changed date in `tools/lastmod.json` (used for `sitemap.xml`, the
+"Last updated" line and `dateModified`). Always commit that file too, and never edit dates in it by hand.
+New pages are added to `sitemap.xml` and the `/sitemap` page automatically.

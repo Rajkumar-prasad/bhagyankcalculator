@@ -97,6 +97,7 @@ FOOTER = [
     ("/blog", "Blog"),
     ("/privacy-policy", "Privacy Policy"),
     ("/terms-and-conditions", "Terms &amp; Conditions"),
+    ("/sitemap", "Sitemap"),
 ]
 
 
@@ -106,11 +107,11 @@ def jsonld(obj):
 
 def page(*, path, title, description, body, lang="en", og_title=None, og_desc=None,
          hreflang=False, schema=None, noindex=False, scripts=True):
-    url = SITE + path if path != "/" else SITE
+    url = SITE + path if path != "/" else SITE + "/"
     alt = ""
     if hreflang:
         en_p, hi_p = ("/", "/hi") if hreflang is True else hreflang
-        en_u = SITE if en_p == "/" else SITE + en_p
+        en_u = SITE + "/" if en_p == "/" else SITE + en_p
         alt = (f'<link rel="alternate" hreflang="en" href="{en_u}">\n'
                f'<link rel="alternate" hreflang="hi" href="{SITE}{hi_p}">\n'
                f'<link rel="alternate" hreflang="x-default" href="{en_u}">\n')
@@ -240,7 +241,7 @@ def faq_block(faqs):
 
 
 def bhagyank_schema(path, lang, name, description, faqs):
-    url = SITE + path if path != "/" else SITE
+    url = SITE + path if path != "/" else SITE + "/"
     crumbs = [{"@type": "ListItem", "position": 1, "name": "Bhagyank Calculator", "item": SITE}]
     if path != "/":
         crumbs.append({"@type": "ListItem", "position": 2, "name": name, "item": url})
@@ -254,7 +255,7 @@ def bhagyank_schema(path, lang, name, description, faqs):
              "inLanguage": ["en", "hi"], "publisher": {"@id": f"{SITE}/#organization"}},
             {"@type": "WebPage", "@id": f"{url}#webpage", "url": url, "name": name, "description": description,
              "inLanguage": lang, "isPartOf": {"@id": f"{SITE}/#website"},
-             "author": {"@id": f"{SITE}{AUTHOR['url']}#person"}, "dateModified": TODAY.isoformat(),
+             "author": {"@id": f"{SITE}{AUTHOR['url']}#person"}, "dateModified": "__MODIFIED__",
              "breadcrumb": {"@type": "BreadcrumbList", "itemListElement": crumbs}},
             {"@type": "WebApplication", "name": name, "url": url, "applicationCategory": "LifestyleApplication",
              "operatingSystem": "Web", "inLanguage": lang, "description": description,
@@ -576,7 +577,7 @@ def about():
                  "Bringing the timeless wisdom of Vedic numerology to everyone, for free.", inner,
                  "Learn about Bhagyank Calculator and author Ananya Sharma (अनन्या शर्मा), who writes our guides on calculating Bhagyank and Mulank from your date of birth.",
                  schema={"@context": "https://schema.org", "@type": "AboutPage", "url": f"{SITE}/about",
-                         "dateModified": TODAY.isoformat(), "author": author_schema()})
+                         "dateModified": "__MODIFIED__", "author": author_schema()})
 
 
 def contact():
@@ -657,11 +658,8 @@ def reduce_num(n):
 
 
 def updated_line(lang):
-    if lang == "hi":
-        txt = f"अंतिम अपडेट: {TODAY.day} {MONTHS_HI[TODAY.month - 1]} {TODAY.year}"
-    else:
-        txt = f"Last updated: {TODAY.day} {MONTHS_EN[TODAY.month - 1]} {TODAY.year}"
-    return f'<p class="container narrow updated xs muted"><time datetime="{TODAY.isoformat()}">{txt}</time></p>'
+    txt = "अंतिम अपडेट: __MODIFIED_HI__" if lang == "hi" else "Last updated: __MODIFIED_EN__"
+    return f'<p class="container narrow updated xs muted"><time datetime="__MODIFIED__">{txt}</time></p>'
 
 
 def chart_table():
@@ -755,7 +753,7 @@ def number_page(n):
         "@graph": [
             {"@type": "Article", "@id": f"{url}#article", "headline": f"Bhagyank {n} Meaning - {i['title']}",
              "description": desc, "url": url, "inLanguage": "en", "image": f"{SITE}/images/og-image.png",
-             "datePublished": TODAY.isoformat(), "dateModified": TODAY.isoformat(),
+             "datePublished": "__PUBLISHED__", "dateModified": "__MODIFIED__",
              "author": author_schema(),
              "publisher": {"@type": "Organization", "name": "Bhagyank Calculator", "url": SITE,
                            "logo": {"@type": "ImageObject", "url": f"{SITE}/icon-512.png"}},
@@ -816,7 +814,7 @@ def author_page():
 {updated_line("en")}"""
     schema = {"@context": "https://schema.org", "@graph": [
         {"@type": "ProfilePage", "@id": f"{url}#profile", "url": url, "name": "Ananya Sharma - Author",
-         "dateModified": TODAY.isoformat(), "inLanguage": "en", "mainEntity": author_schema(),
+         "dateModified": "__MODIFIED__", "inLanguage": "en", "mainEntity": author_schema(),
          "isPartOf": {"@id": f"{SITE}/#website"}},
         {"@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Bhagyank Calculator", "item": SITE},
@@ -936,8 +934,8 @@ def number_page_hi(n):
     url = f"{SITE}/hi/bhagyank/{n}"
     schema = {"@context": "https://schema.org", "@graph": [
         {"@type": "Article", "@id": f"{url}#article", "headline": title, "description": desc, "url": url,
-         "inLanguage": "hi", "image": f"{SITE}/images/og-image.png", "datePublished": TODAY.isoformat(),
-         "dateModified": TODAY.isoformat(), "author": author_schema(),
+         "inLanguage": "hi", "image": f"{SITE}/images/og-image.png", "datePublished": "__PUBLISHED__",
+         "dateModified": "__MODIFIED__", "author": author_schema(),
          "publisher": {"@type": "Organization", "name": "Bhagyank Calculator", "url": SITE,
                        "logo": {"@type": "ImageObject", "url": f"{SITE}/icon-512.png"}}, "mainEntityOfPage": url},
         {"@type": "BreadcrumbList", "itemListElement": [
@@ -1069,7 +1067,7 @@ def lo_shu_page():
         {"@type": "WebApplication", "name": "Lo Shu Grid Calculator", "url": url, "applicationCategory": "LifestyleApplication",
          "operatingSystem": "Web", "description": desc, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"}},
         {"@type": "WebPage", "@id": f"{url}#webpage", "url": url, "name": "Lo Shu Grid Calculator by Date of Birth",
-         "author": {"@id": f"{SITE}{AUTHOR['url']}#person"}, "dateModified": TODAY.isoformat(),
+         "author": {"@id": f"{SITE}{AUTHOR['url']}#person"}, "dateModified": "__MODIFIED__",
          "breadcrumb": {"@type": "BreadcrumbList", "itemListElement": [
              {"@type": "ListItem", "position": 1, "name": "Bhagyank Calculator", "item": SITE},
              {"@type": "ListItem", "position": 2, "name": "Lo Shu Grid Calculator", "item": url}]}},
@@ -1178,7 +1176,7 @@ def post_page(p):
     schema = {"@context": "https://schema.org", "@graph": [
         {"@type": "BlogPosting", "@id": f"{url}#article", "headline": p["h1"], "description": p["desc"], "url": url,
          "inLanguage": p["lang"], "image": f"{SITE}/images/og-image.png", "datePublished": p["published"],
-         "dateModified": TODAY.isoformat(), "author": author_schema(),
+         "dateModified": "__MODIFIED__", "author": author_schema(),
          "publisher": {"@type": "Organization", "name": "Bhagyank Calculator", "url": SITE,
                        "logo": {"@type": "ImageObject", "url": f"{SITE}/icon-512.png"}}, "mainEntityOfPage": url},
         {"@type": "BreadcrumbList", "itemListElement": [
@@ -1222,33 +1220,94 @@ SITEMAP = [("", "1.0", "weekly"), ("/hi", "0.9", "weekly"), ("/moolank-calculato
           [(f"/bhagyank/{n}", "0.7", "monthly") for n in range(1, 10)] + \
           [(f"/hi/bhagyank/{n}", "0.7", "monthly") for n in range(1, 10)] + \
           [("/lo-shu-grid-calculator", "0.9", "weekly"), ("/author/ananya-sharma", "0.5", "monthly"),
-           ("/blog", "0.6", "weekly")] + [(post_url(p), "0.7", "monthly") for p in POSTS]
+           ("/blog", "0.6", "weekly"), ("/sitemap", "0.3", "monthly")] + [(post_url(p), "0.7", "monthly") for p in POSTS]
 
 
 def lang_pair(p):
     if p in ("", "/hi"):
-        return (SITE, SITE + "/hi")
+        return (SITE + "/", SITE + "/hi")
     m = re.fullmatch(r"(/hi)?/bhagyank/(\d)", p)
     if m:
         return (f"{SITE}/bhagyank/{m.group(2)}", f"{SITE}/hi/bhagyank/{m.group(2)}")
     return None
 
 
-def sitemap(lastmod):
+def url_of(f):
+    rel = f.relative_to(PUB).as_posix()[:-5]
+    return "/" if rel == "index" else "/" + rel
+
+
+def finalize_dates():
+    """Give every page its real last-changed date (tools/lastmod.json) instead of 'today' on every build."""
+    import hashlib
+    mf_path = Path(__file__).resolve().parent / "lastmod.json"
+    mf = json.loads(mf_path.read_text()) if mf_path.exists() else {}
+    today = TODAY.isoformat()
+    for f in sorted(PUB.rglob("*.html")):
+        html = f.read_text()
+        u = url_of(f)
+        h = hashlib.sha256(html.encode()).hexdigest()[:16]
+        rec = mf.get(u)
+        if rec is None:
+            rec = {"published": today, "modified": today, "hash": h}
+        elif rec["hash"] != h:
+            rec["modified"], rec["hash"] = today, h
+        mf[u] = rec
+        m = _dt.date.fromisoformat(rec["modified"])
+        html = (html.replace("__MODIFIED_EN__", f"{m.day} {MONTHS_EN[m.month - 1]} {m.year}")
+                    .replace("__MODIFIED_HI__", f"{m.day} {MONTHS_HI[m.month - 1]} {m.year}")
+                    .replace("__MODIFIED__", rec["modified"]).replace("__PUBLISHED__", rec["published"]))
+        f.write_text(html)
+    live = {url_of(f) for f in PUB.rglob("*.html")}
+    mf = {k: v for k, v in sorted(mf.items()) if k in live}
+    mf_path.write_text(json.dumps(mf, indent=1) + "\n")
+    return mf
+
+
+def sitemap(mf):
+    listed = {(p or "/"): (pr, cf) for p, pr, cf in SITEMAP}
+    urls = [u for u in mf if u not in ("/404",)]
+    # anything new that is not in SITEMAP still gets listed
+    order = [p or "/" for p, _, _ in SITEMAP] + sorted(u for u in urls if u not in listed)
     out = ['<?xml version="1.0" encoding="UTF-8"?>',
            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">']
-    for p, pr, cf in SITEMAP:
-        out.append("<url>")
-        out.append(f"<loc>{SITE}{p}</loc>")
-        pair = lang_pair(p)
+    for u in order:
+        if u not in mf:
+            continue
+        pr, cf = listed.get(u, ("0.6", "monthly"))
+        loc = SITE + "/" if u == "/" else SITE + u
+        out.append("  <url>")
+        out.append(f"    <loc>{loc}</loc>")
+        pair = lang_pair("" if u == "/" else u)
         if pair:
-            out.append(f'<xhtml:link rel="alternate" hreflang="en" href="{pair[0]}"/>')
-            out.append(f'<xhtml:link rel="alternate" hreflang="hi" href="{pair[1]}"/>')
-            out.append(f'<xhtml:link rel="alternate" hreflang="x-default" href="{pair[0]}"/>')
-        out.append(f"<lastmod>{lastmod}</lastmod><changefreq>{cf}</changefreq><priority>{pr}</priority>")
-        out.append("</url>")
+            out.append(f'    <xhtml:link rel="alternate" hreflang="en" href="{pair[0]}"/>')
+            out.append(f'    <xhtml:link rel="alternate" hreflang="hi" href="{pair[1]}"/>')
+            out.append(f'    <xhtml:link rel="alternate" hreflang="x-default" href="{pair[0]}"/>')
+        out.append(f"    <lastmod>{mf[u]['modified']}</lastmod>")
+        out.append(f"    <changefreq>{cf}</changefreq>")
+        out.append(f"    <priority>{pr}</priority>")
+        out.append("  </url>")
     out.append("</urlset>")
     return "\n".join(out) + "\n"
+
+
+def html_sitemap():
+    def lst(items):
+        return "<ul>" + "".join(f'<li><a class="link" href="{h}"{" lang=hi" if lang else ""}>{e(t)}</a></li>' for h, t, lang in items) + "</ul>"
+    tools = [("/", "Bhagyank Calculator", 0), ("/hi", "भाग्यांक कैलकुलेटर (हिंदी)", 1),
+             ("/moolank-calculator", "Moolank (Mulank) Calculator", 0), ("/namank-calculator", "Namank Calculator", 0),
+             ("/lo-shu-grid-calculator", "Lo Shu Grid Calculator", 0), ("/gemstone-recommendation", "Gemstone Recommendation", 0)]
+    en = [(f"/bhagyank/{n}", f"Bhagyank {n} meaning - {EN[str(n)]['title']}", 0) for n in range(1, 10)]
+    hi = [(f"/hi/bhagyank/{n}", f"भाग्यांक {n} का अर्थ - {HI[str(n)]['title']}", 1) for n in range(1, 10)]
+    blog = [("/blog", "All blog posts", 0)] + [(post_url(p), p["h1"], 1 if p["lang"] == "hi" else 0) for p in POSTS]
+    site = [("/about", "About Us", 0), ("/author/ananya-sharma", "Author - Ananya Sharma", 0), ("/contact", "Contact Us", 0),
+            ("/privacy-policy", "Privacy Policy", 0), ("/terms-and-conditions", "Terms & Conditions", 0)]
+    inner = (f"<h2>Calculators</h2>{lst(tools)}<h2>Bhagyank meanings (English)</h2>{lst(en)}"
+             f"<h2 lang=\"hi\">भाग्यांक के अर्थ (हिंदी)</h2>{lst(hi)}<h2>Blog</h2>{lst(blog)}<h2>About this site</h2>{lst(site)}"
+             f'<p class="small">For search engines: <a href="/sitemap.xml">XML sitemap</a>.</p>')
+    return shell("/sitemap", "Sitemap - All Pages | Bhagyank Calculator", "Sitemap",
+                 "Every page on Bhagyank Calculator in one place: calculators, Bhagyank meanings in English and Hindi, and blog guides.",
+                 inner, "A list of every page on Bhagyank Calculator: free numerology calculators, Bhagyank 1-9 meanings in English and Hindi, and blog guides.")
 
 
 def main():
@@ -1267,6 +1326,7 @@ def main():
     (PUB / "blog").mkdir(exist_ok=True)
     (PUB / "hi" / "blog").mkdir(parents=True, exist_ok=True)
     (PUB / "blog.html").write_text(blog_index())
+    (PUB / "sitemap.html").write_text(html_sitemap())
     for p in POSTS:
         (PUB / (post_url(p).lstrip("/") + ".html")).write_text(post_page(p))
     (PUB / "favicon.svg").write_text(FAVICON_SVG)
@@ -1276,7 +1336,7 @@ def main():
         "icons": [{"src": "/icon-192.png", "sizes": "192x192", "type": "image/png"},
                   {"src": "/icon-512.png", "sizes": "512x512", "type": "image/png"}]}, indent=2))
     (PUB / "ads.txt").write_text(f"google.com, {ADSENSE.replace('ca-', '')}, DIRECT, f08c47fec0942fa0\n")
-    (PUB / "sitemap.xml").write_text(sitemap(datetime.date.today().isoformat()))
+    (PUB / "sitemap.xml").write_text(sitemap(finalize_dates()))
     (PUB / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
     # data for the calculators
     js = (HERE / "app.js").read_text().replace(

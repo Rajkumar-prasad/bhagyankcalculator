@@ -32,7 +32,40 @@ for f in sorted(PUB.rglob("*.html")):
         if not exists(href):
             errors.append(f"{rel}: broken internal link {href}")
 
-# 2. every blog post: rules from CONTENT_GUIDE.md
+# 2. sitemap.xml: every page listed once, matches canonicals, hreflang reciprocal, no leftover date tokens
+import xml.etree.ElementTree as ET
+SITE = "https://www.bhagyank-calculator.online"
+NS = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9", "x": "http://www.w3.org/1999/xhtml"}
+try:
+    urls = ET.parse(PUB / "sitemap.xml").findall("s:url", NS)
+    locs = [u.find("s:loc", NS).text for u in urls]
+    if len(locs) != len(set(locs)):
+        errors.append("sitemap.xml: duplicate URLs")
+    pages = set()
+    for f in PUB.rglob("*.html"):
+        rel = f.relative_to(PUB).as_posix()[:-5]
+        if rel != "404":
+            pages.add(SITE + "/" if rel == "index" else SITE + "/" + rel)
+    for missing in sorted(pages - set(locs)):
+        errors.append(f"sitemap.xml: page missing {missing}")
+    for extra in sorted(set(locs) - pages):
+        errors.append(f"sitemap.xml: lists a page that does not exist {extra}")
+    alts = {u.find("s:loc", NS).text: {a.get("hreflang"): a.get("href") for a in u.findall("x:link", NS)} for u in urls}
+    for loc, a in alts.items():
+        if a and loc not in alts.get(a.get("en"), {}).values():
+            errors.append(f"sitemap.xml: hreflang not reciprocal for {loc}")
+        path = loc.replace(SITE, "").strip("/") or "index"
+        html = (PUB / (path + ".html")).read_text()
+        m = re.search(r'rel="canonical" href="([^"]+)"', html)
+        if not m or m.group(1) != loc:
+            errors.append(f"{path}.html: canonical does not match sitemap URL {loc}")
+except Exception as ex:  # noqa: BLE001
+    errors.append(f"sitemap.xml: could not be read ({ex})")
+for f in PUB.rglob("*.html"):
+    if "__MODIFIED" in f.read_text() or "__PUBLISHED" in f.read_text():
+        errors.append(f"{f.relative_to(PUB)}: date placeholder left in page")
+
+# 3. every blog post: rules from CONTENT_GUIDE.md
 for pf in sorted((ROOT / "tools" / "posts").glob("*.json")):
     try:
         p = json.loads(pf.read_text())
