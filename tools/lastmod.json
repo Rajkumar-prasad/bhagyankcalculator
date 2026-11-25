@@ -66,13 +66,13 @@
  },
  "/blog": {
   "published": "2026-11-24",
-  "modified": "2026-11-24",
-  "hash": "997f8a2cc5772b12"
+  "modified": "2026-11-25",
+  "hash": "4a030817dd3c59ac"
  },
  "/blog/mulank-bhagyank-combination": {
   "published": "2026-11-24",
-  "modified": "2026-11-24",
-  "hash": "592d6b3d37d73814"
+  "modified": "2026-11-25",
+  "hash": "f17db816f522bc4e"
  },
  "/contact": {
   "published": "2026-11-24",
@@ -134,10 +134,15 @@
   "modified": "2026-11-24",
   "hash": "f53f964933493ac0"
  },
+ "/hi/blog/mulank-aur-bhagyank-me-antar": {
+  "published": "2026-11-25",
+  "modified": "2026-11-25",
+  "hash": "4623f9901f8be368"
+ },
  "/hi/blog/shaadi-ke-liye-mulank-bhagyank-milan": {
   "published": "2026-11-24",
-  "modified": "2026-11-24",
-  "hash": "8603b4a1ac23c7af"
+  "modified": "2026-11-25",
+  "hash": "c673fd3dd806dea2"
  },
  "/lo-shu-grid-calculator": {
   "published": "2026-11-24",
@@ -211,8 +216,8 @@
  },
  "/sitemap": {
   "published": "2026-11-24",
-  "modified": "2026-11-24",
-  "hash": "66675e22d7b2dec8"
+  "modified": "2026-11-25",
+  "hash": "e86fa04c47d4fc5f"
  },
  "/terms-and-conditions": {
   "published": "2026-11-24",
