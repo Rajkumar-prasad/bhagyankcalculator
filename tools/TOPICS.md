@@ -9,9 +9,9 @@ If a topic would duplicate an existing page, adjust the angle or move it down an
 - [x] शादी के लिए मूलांक-भाग्यांक मिलान (HI) - tool: /hi - published 2026-11-24 at /hi/blog/shaadi-ke-liye-mulank-bhagyank-milan
 - [x] मूलांक और भाग्यांक में अंतर - "mulank aur bhagyank me antar" (HI) - tool: /hi, /moolank-calculator - published 2026-11-25 at /hi/blog/mulank-aur-bhagyank-me-antar (angle: deeper than the short /hi section - worked examples, which matters more, same/clashing numbers, common mistakes)
 - [x] Lucky number by date of birth: how to find yours (EN) - tool: / - published 2026-11-26 at /blog/lucky-number-by-date-of-birth
+- [x] भाग्यांक कसा काढायचा - सोपी पद्धत आणि उदाहरणे - "bhagyank kasa kadhaycha" (MR) - tool: /mr - published 2026-11-27 at /mr/blog/bhagyank-kasa-kadhaycha (angle: deeper than the short /mr section - two methods, 5 worked examples incl. leap day and 22, the 9 shortcut to check answers, common mistakes)
 
 ## Queue
-- [ ] भाग्यांक कसा काढायचा - सोपी पद्धत आणि उदाहरणे - "bhagyank kasa kadhaycha" (MR) - tool: /mr
 - [ ] भाग्यांक 8 वालों का करियर, पैसा और जीवन - "bhagyank 8" (HI) - tool: /hi, /hi/bhagyank/8
 - [ ] Bhagyank vs life path number: same or different? (EN) - tool: /
 - [ ] लो शू ग्रिड में मिसिंग नंबर और उनके उपाय - "lo shu grid missing numbers" (HI) - tool: /lo-shu-grid-calculator

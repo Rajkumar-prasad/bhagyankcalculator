@@ -66,13 +66,13 @@
  },
  "/blog": {
   "published": "2026-11-24",
-  "modified": "2026-11-26",
-  "hash": "f5fef74b7d87c15d"
+  "modified": "2026-11-27",
+  "hash": "38ed3f33c09fbec3"
  },
  "/blog/lucky-number-by-date-of-birth": {
   "published": "2026-11-26",
-  "modified": "2026-11-26",
-  "hash": "ccb6a521fbc5e9fd"
+  "modified": "2026-11-27",
+  "hash": "31a699983428ba03"
  },
  "/blog/mulank-bhagyank-combination": {
   "published": "2026-11-24",
@@ -141,8 +141,8 @@
  },
  "/hi/blog/mulank-aur-bhagyank-me-antar": {
   "published": "2026-11-25",
-  "modified": "2026-11-25",
-  "hash": "4623f9901f8be368"
+  "modified": "2026-11-27",
+  "hash": "01b25a100ee7d4e2"
  },
  "/hi/blog/shaadi-ke-liye-mulank-bhagyank-milan": {
   "published": "2026-11-24",
@@ -209,6 +209,11 @@
   "modified": "2026-11-24",
   "hash": "10ab10b20e18305b"
  },
+ "/mr/blog/bhagyank-kasa-kadhaycha": {
+  "published": "2026-11-27",
+  "modified": "2026-11-27",
+  "hash": "bbdfcfb7699c655e"
+ },
  "/namank-calculator": {
   "published": "2026-11-24",
   "modified": "2026-11-24",
@@ -221,8 +226,8 @@
  },
  "/sitemap": {
   "published": "2026-11-24",
-  "modified": "2026-11-26",
-  "hash": "59c2a39ea570cb30"
+  "modified": "2026-11-27",
+  "hash": "e950afe7dc0071cb"
  },
  "/terms-and-conditions": {
   "published": "2026-11-24",
