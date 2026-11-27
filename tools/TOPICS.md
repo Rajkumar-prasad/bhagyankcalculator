@@ -1,6 +1,6 @@
 # Blog topic queue
 
-One post per day, top to bottom. Each topic names its main keyword, language and the tool page it supports.
+Three posts per day (about 9:47, 14:47 and 18:47 IST), top to bottom. Each topic names its main keyword, language and the tool page it supports.
 Tick it when published: `- [x] ... - published YYYY-MM-DD at /blog/slug`.
 If a topic would duplicate an existing page, adjust the angle or move it down and say why.
 
@@ -45,5 +45,5 @@ If a topic would duplicate an existing page, adjust the angle or move it down an
 - [ ] भाग्यांक 5 वालों के लिए बिज़नेस आइडिया (HI) - tool: /hi, /hi/bhagyank/5
 - [ ] Bhagyank 2 meaning: sensitivity as a strength (EN) - tool: /, /bhagyank/2
 
-When fewer than 5 topics are left, research and add 10 more at the bottom (same format, mixing Hindi and English,
+When fewer than 10 topics are left, research and add 15 more at the bottom (same format, mixing Hindi and English,
 each tied to a tool page, no duplicates of existing pages or posts).
