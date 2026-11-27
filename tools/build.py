@@ -114,7 +114,7 @@ def jsonld(obj):
 
 
 def page(*, path, title, description, body, lang="en", og_title=None, og_desc=None,
-         hreflang=False, schema=None, noindex=False, scripts=True):
+         hreflang=False, schema=None, noindex=False, scripts=True, og_image="/images/og-image.png"):
     url = SITE + path if path != "/" else SITE + "/"
     alt = ""
     ls = lang_set(path) if hreflang else None
@@ -142,13 +142,13 @@ def page(*, path, title, description, body, lang="en", og_title=None, og_desc=No
 <meta property="og:description" content="{e(og_desc)}">
 <meta property="og:site_name" content="Bhagyank Calculator">
 <meta property="og:locale" content="{locale}">
-<meta property="og:image" content="{SITE}/images/og-image.png">
+<meta property="og:image" content="{SITE}{og_image}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{e(og_title)}">
 <meta name="twitter:description" content="{e(og_desc)}">
-<meta name="twitter:image" content="{SITE}/images/og-image.png">
+<meta name="twitter:image" content="{SITE}{og_image}">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -1168,6 +1168,10 @@ def render_body(p):
     return body
 
 
+def post_image(p):
+    return f"/images/blog/{p['lang']}-{p['slug']}.jpg"
+
+
 def post_url(p):
     return ("/blog/" if p["lang"] == "en" else f"/{p['lang']}/blog/") + p["slug"]
 
@@ -1198,6 +1202,7 @@ def post_page(p):
 <nav class="crumbs xs muted" aria-label="Breadcrumb"><a href="{crumbs_home[0]}">{crumbs_home[1]}</a> <span aria-hidden="true">›</span> <a href="/blog">{t["blog"]}</a> <span aria-hidden="true">›</span> <span>{e(p["h1"])}</span></nav>
 <h1 class="post-title">{e(p["h1"])}</h1>
 <p class="post-meta xs muted">{t["by"]} <a class="link" href="{AUTHOR['url']}">{t["name"]}</a> · <time datetime="{p['published']}">{date_txt}</time></p>
+<figure class="post-hero"><img src="{post_image(p)}" alt="{e(p["h1"])}" width="1200" height="630" fetchpriority="high"></figure>
 <p class="lead-left">{e(p["intro"])}</p>
 <div class="content">
 {render_body(p)}
@@ -1211,7 +1216,9 @@ def post_page(p):
 </main>"""
     schema = {"@context": "https://schema.org", "@graph": [
         {"@type": "BlogPosting", "@id": f"{url}#article", "headline": p["h1"], "description": p["desc"], "url": url,
-         "inLanguage": p["lang"], "image": f"{SITE}/images/og-image.png", "datePublished": p["published"],
+         "inLanguage": p["lang"],
+         "image": {"@type": "ImageObject", "url": SITE + post_image(p), "width": 1200, "height": 630},
+         "datePublished": p["published"],
          "dateModified": "__MODIFIED__", "author": author_schema(),
          "publisher": {"@type": "Organization", "name": "Bhagyank Calculator", "url": SITE,
                        "logo": {"@type": "ImageObject", "url": f"{SITE}/icon-512.png"}}, "mainEntityOfPage": url},
@@ -1221,12 +1228,14 @@ def post_page(p):
             {"@type": "ListItem", "position": 3, "name": p["h1"], "item": url}]},
         {"@type": "FAQPage", "inLanguage": p["lang"], "mainEntity": [
             {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faqs"]]}]}
-    return page(path=url_path, lang=p["lang"], title=p["title"], description=p["desc"], body=body, schema=schema)
+    return page(path=url_path, lang=p["lang"], title=p["title"], description=p["desc"], body=body, schema=schema,
+                og_image=post_image(p))
 
 
 def blog_index():
     cards = "".join(
-        f'<article class="card mini"><p class="eyebrow">{ {"hi": "हिंदी", "mr": "मराठी"}.get(p["lang"], "English")}</p>'
+        f'<article class="card mini post-card"><a href="{post_url(p)}" tabindex="-1" aria-hidden="true">'
+        f'<img src="{post_image(p)}" alt="" width="1200" height="630" loading="lazy"></a><p class="eyebrow">{ {"hi": "हिंदी", "mr": "मराठी"}.get(p["lang"], "English")}</p>'
         f'<h2 class="h-card"><a href="{post_url(p)}"{"" if p["lang"] == "en" else " lang=" + p["lang"]}>{e(p["h1"])}</a></h2>'
         f'<p class="small muted"{"" if p["lang"] == "en" else " lang=" + p["lang"]}>{e(p["desc"])}</p>'
         f'<p class="xs"><a class="link" href="{post_url(p)}">{ {"hi": "पूरा लेख पढ़ें", "mr": "संपूर्ण लेख वाचा"}.get(p["lang"], "Read the guide")}</a></p></article>'
@@ -1238,7 +1247,8 @@ def blog_index():
 </main>"""
     schema = {"@context": "https://schema.org", "@type": "Blog", "url": f"{SITE}/blog", "name": "Bhagyank Calculator Blog",
               "author": author_schema(),
-              "blogPost": [{"@type": "BlogPosting", "headline": p["h1"], "url": SITE + post_url(p)} for p in POSTS]}
+              "blogPost": [{"@type": "BlogPosting", "headline": p["h1"], "url": SITE + post_url(p),
+                            "image": SITE + post_image(p)} for p in POSTS]}
     return page(path="/blog", title="Numerology Blog - Bhagyank, Mulank and Lo Shu Guides",
                 description="Simple numerology guides in English and Hindi: Mulank and Bhagyank combinations, marriage matching, Lo Shu Grid and more.",
                 body=body, schema=schema)
@@ -1526,6 +1536,17 @@ def main():
     (PUB / "blog").mkdir(exist_ok=True)
     (PUB / "hi" / "blog").mkdir(parents=True, exist_ok=True)
     (PUB / "mr" / "blog").mkdir(parents=True, exist_ok=True)
+    from featured import make_featured
+    img_dir = PUB / "images" / "blog"
+    img_dir.mkdir(parents=True, exist_ok=True)
+    wanted = set()
+    for p in POSTS:
+        out = PUB / post_image(p).lstrip("/")
+        make_featured(p, out)
+        wanted.add(out.name)
+    for old in img_dir.glob("*.jpg"):
+        if old.name not in wanted:
+            old.unlink()
     (PUB / "blog.html").write_text(blog_index())
     (PUB / "sitemap.html").write_text(html_sitemap())
     for p in POSTS:

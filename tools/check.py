@@ -95,8 +95,19 @@ for pf in sorted((ROOT / "tools" / "posts").glob("*.json")):
     if len(p.get("title", "")) > 70:
         errors.append(f"{pf.name}: title longer than 70 characters")
     out = PUB / (("blog/" if p.get("lang") == "en" else f"{p.get('lang')}/blog/") + p.get("slug", "") + ".html")
+    img = PUB / "images" / "blog" / f"{p.get('lang')}-{p.get('slug')}.jpg"
+    if not img.exists():
+        errors.append(f"{pf.name}: featured image missing ({img.relative_to(ROOT)}) - run tools/build.py")
     if not out.exists():
         errors.append(f"{pf.name}: page not built at {out.relative_to(ROOT)} - run tools/build.py")
+
+try:
+    from PIL import features
+    if not features.check("raqm"):
+        errors.append("Pillow has no raqm support: Hindi/Marathi featured images would render wrongly "
+                      "(install libraqm, e.g. apt-get install libraqm0, then pip install --force-reinstall pillow)")
+except ImportError:
+    errors.append("Pillow is not installed (pip install pillow) - needed for featured images")
 
 if errors:
     print("\n".join(errors))

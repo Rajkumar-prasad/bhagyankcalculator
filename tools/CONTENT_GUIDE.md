@@ -87,6 +87,11 @@ is built automatically from them). Allowed inside: `p, ul, ol, li, strong, em, a
 Links: internal `<a class="link" href="/path">`; the statistic link adds `target="_blank" rel="noopener"`.
 Tokens you may use: `{{CHART_EN}}` / `{{CHART_HI}}` (the 9x9 Mulank-Bhagyank chart), `{{PEW_IN_URL}}`, `{{PEW_US_URL}}`.
 Do not add the FAQ, author box, disclaimer or related list to the body - the template adds them.
+**Featured image:** created automatically by `tools/featured.py` from the post's `h1` (1200x630 JPG at
+`public/images/blog/<lang>-<slug>.jpg`). It is shown under the title, used as the WhatsApp/Facebook share image and in
+the blog list. Keep the `h1` under about 70 characters so it fits the image. The gold badge shows the number written
+right after Bhagyank/Mulank/number (e.g. "भाग्यांक 8", "मूलांक 5 भाग्यांक 8" shows "5 + 8"); otherwise a star.
+Do not add images to the body yourself.
 
 ## 4. Site map (link targets)
 Tool pages (the money pages - every post must link to its target tool at least twice, with varied anchors):
