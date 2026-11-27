@@ -4,7 +4,7 @@ Every blog post exists to help a real reader **and** to support one of the tool 
 Follow this guide exactly. Owner: Raj. Author shown on posts: Ananya Sharma (अनन्या शर्मा), a pen name.
 
 ## 1. Workflow for one post (do the steps in order)
-1. **Pick the topic**: take the first unchecked line in `tools/TOPICS.md`. Check `tools/posts/` and the
+1. **Pick the topic**: take the first unchecked line in `tools/TOPICS.md` and run the keyword check in 1a. Check `tools/posts/` and the
    site pages (section 4) so the new post does not compete with a page that already targets the same keyword.
    If it would, adjust the angle or skip to the next topic and note why in TOPICS.md.
 2. **Research**: search the web for the keyword. Read the top results and the "People also ask" style questions.
@@ -14,6 +14,28 @@ Follow this guide exactly. Owner: Raj. Author shown on posts: Ananya Sharma (अ
 4. **Outline**: H1, a 2-4 sentence intro that answers the question directly, 5-7 H2 sections written as the
    questions people ask, then FAQ (3-5 questions). Plan the internal links before writing.
 5. **Write** the post as a JSON file (section 3), then update internal links (section 5), then build and check (section 6).
+
+### 1a. Keyword choice - pick what a new site can actually rank for
+The site is new and has few backlinks, so every post targets a **long-tail keyword with weak competition** that is
+still relevant to a tool page. Before writing, search the exact keyword (and its Hindi/Marathi spelling) and look at
+the top 10 results:
+- **Good (go ahead):** results are off-topic (TV shows, unrelated pages), forums/Quora, Scribd/PDF uploads, Blogspot,
+  YouTube only, thin pages, very old posts, or just 1-3 niche numerology sites. Few results have the keyword in the title.
+- **Medium (go, but be clearly better):** several niche numerology sites with real pages. Beat them with worked examples,
+  tables and a clearer answer.
+- **Hard (do not target):** the top results are all big brands (Astrotalk, AstroSage, Times of India, NDTV, Jagran,
+  Amar Ujala, Aaj Tak, GaneshaSpeaks, Clickastro). Narrow the topic to a longer phrase (a specific number, combination,
+  language or question) and check again; if it is still hard, move it down in TOPICS.md and note "[H] skipped".
+- **No demand (skip):** if nothing relevant ranks AND the phrase is not suggested by Google autocomplete or "People also
+  ask", people probably don't search it.
+- Best patterns for this site: a specific number + intent ("bhagyank 8 career in hindi"), a Mulank + Bhagyank
+  combination ("mulank 5 bhagyank 8"), a Lo Shu missing/repeated number ("lo shu grid 5 missing"), and Hindi/Marathi
+  versions of questions (often far weaker results than English).
+- **Never target the main keyword of one of our own pages** (that is cannibalization): Bhagyank calculator / भाग्यांक
+  कैलकुलेटर / how to calculate Bhagyank (homepages), "bhagyank N meaning" (/bhagyank/N and the hi/mr versions),
+  Moolank/Mulank calculator, Namank calculator, Lo Shu Grid calculator, gemstone by date of birth, and any existing
+  post's keyword. Pick a narrower angle and link to that page instead.
+- Note the difficulty you found next to the topic when you tick it ([E]/[M]).
 
 ## 2. Writing rules (mandatory)
 - Write like a real person for a 6th-7th grade reader: short sentences, everyday words, one idea per paragraph,
