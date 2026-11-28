@@ -53,7 +53,8 @@ the top 10 results:
   "still waters run deep", "slow and steady wins the race", "short fuse", "smooth seas never made a skilled
   sailor", "don't make a mountain out of a molehill", "ताली दोनों हाथों से बजती है", "देर आए दुरुस्त आए",
   "लीक से हटकर", "अकेला चना भाड़ नहीं फोड़ सकता", "जैसी संगत वैसी रंगत", "बाल की खाल", "ईंट का जवाब पत्थर से", "एकीचे बळ", "संगत तशी रंगत", "ज्ञान वाटल्याने वाढते", "चाकोरीबाहेर", "हरहुन्नरी",
-  "मन जिंकणे", "कीस पाडणे", "धीर धरी रे धीरापोटी", "रागाच्या भरात बोललेले शब्द".
+  "मन जिंकणे", "कीस पाडणे", "धीर धरी रे धीरापोटी", "रागाच्या भरात बोललेले शब्द",
+  "करत-करत अभ्यास के जड़मति होत सुजान", "बूँद-बूँद से घड़ा भरता है", "a penny saved is a penny earned", "Rome wasn't built in a day".
 - **Exactly 1 statistic** per post that shows authority, linked on a 3-4 word anchor (e.g. "Pew Research Center
   survey", "Pew Research के सर्वे") to the page that proves it. Verify the number on the source page yourself
   before using it. Prefer a different verified statistic from the previous posts when one fits; the Pew figures
