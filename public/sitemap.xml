@@ -356,15 +356,21 @@
   </url>
   <url>
     <loc>https://www.bhagyank-calculator.online/blog</loc>
-    <lastmod>2026-11-27</lastmod>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.bhagyank-calculator.online/sitemap</loc>
-    <lastmod>2026-11-27</lastmod>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.bhagyank-calculator.online/hi/blog/lo-shu-grid-me-5-missing</loc>
+    <lastmod>2026-11-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.bhagyank-calculator.online/hi/blog/bhagyank-8-career-aur-paisa</loc>
@@ -386,7 +392,7 @@
   </url>
   <url>
     <loc>https://www.bhagyank-calculator.online/hi/blog/mulank-aur-bhagyank-me-antar</loc>
-    <lastmod>2026-11-27</lastmod>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

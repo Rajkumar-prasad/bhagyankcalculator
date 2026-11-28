@@ -11,12 +11,12 @@ If a topic would duplicate an existing page, adjust the angle or move it down an
 - [x] Lucky number by date of birth: how to find yours (EN) - tool: / - published 2026-11-26 at /blog/lucky-number-by-date-of-birth
 - [x] भाग्यांक कसा काढायचा - सोपी पद्धत आणि उदाहरणे - "bhagyank kasa kadhaycha" (MR) - tool: /mr - published 2026-11-27 at /mr/blog/bhagyank-kasa-kadhaycha (angle: deeper than the short /mr section - two methods, 5 worked examples incl. leap day and 22, the 9 shortcut to check answers, common mistakes)
 - [x] भाग्यांक 8 वालों का करियर और पैसा - "bhagyank 8 career in hindi" [E] (HI) - tool: /hi, /hi/bhagyank/8 - published 2026-11-27 at /hi/blog/bhagyank-8-career-aur-paisa (re-checked [E]: Wikipedia/TV pages and 2-3 thin niche pages rank; angle: career table with real job titles, job vs business, why success comes late, money habits, Mulank 1-9 + Bhagyank 8 career table)
+- [x] लो शू ग्रिड में 5 नंबर न हो तो क्या करें - "lo shu grid 5 missing" [E] (HI) - tool: /lo-shu-grid-calculator - published 2026-11-28 at /hi/blog/lo-shu-grid-me-5-missing (re-checked [E]: Scribd, Wikipedia/maths pages and 2-3 niche sites rank; angle: check if Mulank/Bhagyank fill the 5, how common it is (61% of 1960-2009 dates), the 4 planes/yogs 5 blocks, daily + traditional remedies, mistakes)
 
 ## Queue
 Ordered easiest-to-rank first. Difficulty from a live Google check on 2026-11-27: [E] easy (weak or off-topic results,
 forums/PDFs/thin pages ranking), [M] medium (a few niche sites with real pages). Re-check before writing (CONTENT_GUIDE section 1a).
 
-- [ ] लो शू ग्रिड में 5 नंबर न हो तो क्या करें - "lo shu grid 5 missing" [E] (HI) - tool: /lo-shu-grid-calculator
 - [ ] मूलांक 5 भाग्यांक 8: स्वभाव, करियर और शादी - "mulank 5 bhagyank 8" [E] (HI) - tool: /hi, /moolank-calculator
 - [ ] Lo Shu Grid missing number 8: meaning and simple remedies - "lo shu grid missing 8" [E] (EN) - tool: /lo-shu-grid-calculator
 - [ ] भाग्यांक 8 असणाऱ्यांसाठी करिअर आणि पैसा - "bhagyank 8 career marathi" [E] (MR) - tool: /mr, /mr/bhagyank/8
